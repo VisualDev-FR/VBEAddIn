@@ -1,0 +1,10 @@
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\bin\Debug\VBEAddin.dll
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\bin\Debug\VBEAddin.pdb
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\bin\Debug\VBEAddin.tlb
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\obj\Debug\VBEAddin.Resources.resources
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\obj\Debug\VBEAddin.vbproj.GenerateResource.cache
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\obj\Debug\VBEAddin.vbproj.CoreCompileInputs.cache
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\obj\Debug\VBEAddin.dll
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\obj\Debug\VBEAddin.pdb
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\obj\Debug\Interop.Office.dll
+C:\Users\menan\Desktop\VBEAddin\VBEAddin\obj\Debug\VBEAddin.vbproj.ResolveComReference.cache

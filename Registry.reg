@@ -1,0 +1,35 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\VBA\VBE\6.0\Addins\VBEAddIn.Connect]
+"CommandLineSafe"=dword:00000000
+"Description"="Description for your new addin"
+"LoadBehavior"=dword:00000000
+"FriendlyName"="VBEAddIn"
+
+[HKEY_CURRENT_USER\Software\Microsoft\VBA\VBE\6.0\Addins64\VBEAddIn.Connect]
+"CommandLineSafe"=dword:00000000
+"Description"="Description for your new addin"
+"LoadBehavior"=dword:00000000
+"FriendlyName"="VBEAddIn"
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Visual Basic\6.0\Addins\VBEAddIn.Connect]
+"CommandLineSafe"=dword:00000000
+"Description"="Description for your new addin"
+"LoadBehavior"=dword:00000000
+"FriendlyName"="VBEAddIn"
+
+[HKEY_CLASSES_ROOT\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}]
+@="VBEAddIn.Connect"
+
+[HKEY_CLASSES_ROOT\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\Implemented Categories]
+
+[HKEY_CLASSES_ROOT\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="VBEAddIn.Connect"
+"Assembly"="VBEAddin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///C:\Users\menan\Desktop\VBEAddin\VBEAddin\bin\Debug\VBEAddIn.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\ProgId]
+@="VBEAddIn.Connect"

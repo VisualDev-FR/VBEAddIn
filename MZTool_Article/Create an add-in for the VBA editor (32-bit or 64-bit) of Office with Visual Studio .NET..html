@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app220.us.archive.org';v.server_ms=841;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=U25-Dms9" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://www.mztools.com/articles/2012/MZ2012013.aspx","20210917153659","https://web.archive.org/","web","/_static/",
+	      "1631893019");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=fantwOh2" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-15"/>
+
+<title>
+	HOWTO: Create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET.
+</title><link rel="stylesheet" type="text/css" href="/web/20210917153659cs_/https://www.mztools.com/css/mztools.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/web/20210917153659im_/https://www.mztools.com/images/favicon.ico"/><link rel="apple-touch-icon" href="/web/20210917153659im_/https://www.mztools.com/images/apple-touch-icon.png"/><link rel="apple-touch-icon" sizes="57x57" href="/web/20210917153659im_/https://www.mztools.com/images/apple-touch-icon-57x57.png"/><link rel="apple-touch-icon" sizes="72x72" href="/web/20210917153659im_/https://www.mztools.com/images/apple-touch-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/web/20210917153659im_/https://www.mztools.com/images/apple-touch-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/web/20210917153659im_/https://www.mztools.com/images/apple-touch-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/web/20210917153659im_/https://www.mztools.com/images/apple-touch-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/web/20210917153659im_/https://www.mztools.com/images/apple-touch-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/web/20210917153659im_/https://www.mztools.com/images/apple-touch-icon-152x152.png"/>
+
+   <script type="text/javascript" src="/web/20210917153659js_/https://www.mztools.com/scripts/mztools.js"></script>
+   <script type="text/javascript" src="/web/20210917153659js_/https://www.mztools.com/scripts/google-analytics.js"></script>
+ </head>
+<body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  /*min-width:800px !important;*/
+}
+</style>
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20210917153659/https%3A//www.mztools.com/articles/2012/MZ2012013.aspx"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="/_static/images/toolbar/wayback-toolbar-logo-100.png, /_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, /_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="https://www.mztools.com/articles/2012/MZ2012013.aspx" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20210917153659" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+		<div class="s" id="wm-nav-captures" style="flex:1;">
+	  	  <a class="t" href="/web/20210917153659*/https://www.mztools.com/articles/2012/MZ2012013.aspx" title="See a list of every capture for this URL">20 captures</a>
+	  <div class="r" title="Timespan for captures of this URL">06 Oct 2012 - 03 Dec 2021</div>
+	  </div>
+	<div class="k">
+	  <a href="" id="wm-graph-anchor">
+	    <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+	      <canvas id="wm-sparkline-canvas" width="675" height="27" border="0"></canvas>
+	    </div>
+	  </a>
+	</div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+	<tbody>
+	  <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+	  <tr class="m">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20210629142111/https://www.mztools.com/articles/2012/MZ2012013.aspx" title="29 Jun 2021"><strong>Jun</strong></a></td>
+	    <td class="c" id="displayMonthEl" title="You are here: 15:36:59 Sep 17, 2021">SEP</td>
+	    <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20211203063122/https://www.mztools.com/articles/2012/MZ2012013.aspx" title="03 Dec 2021"><strong>Dec</strong></a></td>
+	  </tr>
+	  <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+	  <tr class="d">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20210629142111/https://www.mztools.com/articles/2012/MZ2012013.aspx" title="14:21:11 Jun 29, 2021"><img src="/_static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a></td>
+	    <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 15:36:59 Sep 17, 2021">17</td>
+	    <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20211203063122/https://www.mztools.com/articles/2012/MZ2012013.aspx" title="06:31:22 Dec 03, 2021"><img src="/_static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0" /></a></td>
+	  </tr>
+	  <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+	  <tr class="y">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20180517132047/https://www.mztools.com/articles/2012/MZ2012013.aspx" title="17 May 2018"><strong>2018</strong></a></td>
+	    <td class="c" id="displayYearEl" title="You are here: 15:36:59 Sep 17, 2021">2021</td>
+	    <td class="f" nowrap="nowrap">2022</td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+        	<span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#"
+	     title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+	</span>
+        	<a class="xxs" href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+	<a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20210917153659/http://web.archive.org/screenshot/https://www.mztools.com/articles/2012/MZ2012013.aspx"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+	<a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20210917153659/https://www.mztools.com/articles/2012/MZ2012013.aspx" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+	<a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20210917153659/https://www.mztools.com/articles/2012/MZ2012013.aspx" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+	<a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+                    <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/commoncrawl)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/commoncrawl" target="_new"><span class="wm-title">Common Crawl</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Web crawl data from Common Crawl.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20210917153659/https://www.mztools.com/articles/2012/MZ2012013.aspx</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(675,27,25,2,"web","https://www.mztools.com/articles/2012/MZ2012013.aspx","20210917153659",1996,"/_static/",["/_static/css/banner-styles.css?v=fantwOh2","/_static/css/iconochive.css?v=qtvMKcIJ"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+   <div style="width: 1000px; margin-left:auto;margin-right:auto; background-color: #FFFFFF; padding: 6px; border: 1px; border-style: solid; border-color: #A0A0A0;">
+      <table class="non_printable" cellspacing="0" cellpadding="0" width="100%" border="0">
+         <tr>
+            <td style="line-height: 1px; width: 10px"><img height="10" width="10" alt="" src="/web/20210917153659im_/https://www.mztools.com/images/borders/top_left_dark_blue.png"/></td>
+            <!-- We need to use width: 980px rather than width: 100% to work in IE 8.0 -->
+            <td style="line-height: 1px; width: 980px; background-color: #04223A" colspan="3"></td>
+            <td style="line-height: 1px; width: 10px"><img height="10" width="10" alt="" src="/web/20210917153659im_/https://www.mztools.com/images/borders/top_right_dark_blue.png"/></td>
+         </tr>
+         <tr>
+            <td colspan="5" style="background-color: #04223A; vertical-align: bottom; text-align: center"><a href="https://web.archive.org/web/20210917153659/http://www.mztools.com/"><img src="/web/20210917153659im_/https://www.mztools.com/images/mztools.png" style="border-width: 0" width="250" height="50" alt="Logo"/></a></td>
+         </tr>
+         <tr>
+            <td style="line-height: 1px; width: 10px"><img src="/web/20210917153659im_/https://www.mztools.com/images/borders/bottom_left_dark_blue.png" height="10" width="10" alt=""/></td>
+            <td style="line-height: 1px; width: 100%; background-color: #04223A" colspan="3"></td>
+            <td style="line-height: 1px; width: 10px"><img src="/web/20210917153659im_/https://www.mztools.com/images/borders/bottom_right_dark_blue.png" height="10" width="10" alt=""/></td>
+         </tr>
+      </table>
+      <table class="table_central" cellspacing="0" cellpadding="0" width="100%" border="0">
+         <tr>
+            <td id="Content" class="td_content">
+               <div>
+                  
+
+<table cellspacing="0" cellpadding="0" class="table_header1"><tr><td class="td_header1_left" width="10px"></td><td class="td_header1_center"><b>HOWTO: Create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET.</b></td><td class="td_header1_right" width="10px"></td></tr></table><br/>
+<table border="0">
+	<tr>
+		<td><b>Author</b>: </td>
+		<td>Carlos J. Quintero (Microsoft MVP)</td>
+		<td class="td_article_header"><b>Applies to</b>:</td>
+		<td>Microsoft Office 64-bit</td>
+	</tr>
+	<tr>
+		<td><b>Date</b>:</td>
+		<td>September 2012</td>
+		<td>&nbsp;</td>
+		<td>Microsoft Office 32-bit</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+
+<span class="article_section">Introduction</span>
+
+   <p>Traditionally add-ins for the 32-bit VBA editor of Microsoft Office were created with Visual Basic 6.0, which can generate 32-bit COM (ActiveX) 
+      DLLs. However, the VBA editor of the 64-bit version of Microsoft Office 2010 
+      only supports 64-bit COM add-ins, so it is not possible to create add-ins for 
+      that version using Visual Basic 6.0. </p>
+   <p>This article explains how to create an add-in for the 64-bit VBA editor of Office (and for 
+      the 32-bit VBA editor) using Visual Studio .NET and the .NET Framework 2.0, since 
+      .NET dlls can be 32-bit or 64-bit and both can be registered for COM-Interop.</p>
+<span class="article_section">More information</span>
+<p>To create an add-in for the 64-bit or 32-bit VBA editor of Microsoft Office 
+   follow these steps:</p>
+   <ul>
+      <li>Using Visual Studio 2005 or higher create a VB.NET Class Library project named 
+         &quot;MyVBAAddin&quot; using .NET Framework 2.0. It is possible to use higher versions of 
+         the .NET Framework, but they are less likely to be installed on the machine of 
+         the end users so the setup of the add-in should install it. It is possible to 
+         use C# too.</li>
+      <li>Generate the required Interop assemblies as explained in the article <a href="MZ2012011.aspx">HOWTO: Generate Interop assemblies to create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a>.</li>
+      <li>Add those Interop assemblies as references to the project, using the &quot;Project&quot;, 
+         &quot;Add Reference...&quot; menu, &quot;Browse&quot; tab. When the project is 
+         built, these Interop assemblies will be copied to the output folder (bin\Debug) 
+         along with the add-in assembly. All of them should be installed by the setup in 
+         the destination folder with the add-in assembly. </li>
+      <li>In the Project properties window of the project:
+         <ul>
+            <li>In the &quot;Application&quot; tab, ensure that both the Assembly name and Root namespace 
+               are set to &quot;MyVBAAddin&quot;.</li>
+            <li>In the &quot;Compile&quot; tab, ensure that the &quot;Register for COM interop&quot; checkbox is
+               <strong>not</strong> checked. The assembly will be registered for COM Interop 
+               manually later with the proper regasm.exe tool. This checkbox would only 
+               register the add-in dll as 32-bit COM library, not as 64-bit COM library.</li>
+            <li>In the &quot;Compile&quot; tab, &quot;Advanced Compile Options&quot; button, ensure that the 
+               &quot;Target CPU&quot; combobox is set to &quot;AnyCPU&quot;, which means that the assembly can be 
+               executed as 64-bit or 32-bit, depending on the executing .NET Framework that 
+               loads it.</li>
+            <li>In the &quot;Signing&quot; tab, check the &quot;Sign the assembly&quot; checkbox and choose the 
+               strong name key file that you used to generate the Interop assemblies.</li>
+         </ul>
+      </li>
+      <li>Rename the Class1.vb class to Connect.vb.</li>
+      <li>Paste in the Connect.vb file this code:</li>
+   </ul>
+
+<table width="100%" style="border-bottom-style:solid; border-bottom-color:Blue; border-bottom-width:1px"><tr><td>Language: VB.NET</td><td style="text-align:right"><span style="color:Blue; cursor:pointer" onclick="CopyToClipboard(document.getElementById('Code1'));">&nbsp;&nbsp;&nbsp;<img alt="Copy Code" style="border-style:none" src="/web/20210917153659im_/https://www.mztools.com/images/other/copy_code.png"/>&nbsp;Copy Code (IE only)</span></td></tr></table>
+
+<pre class="article_source_code" id="Code1">
+Imports MyCompany.Interop
+Imports MyCompany.Interop.Extensibility
+Imports System.Windows.Forms
+Imports System.Runtime.InteropServices
+
+&lt;ComVisible(True), Guid(PUT_NEW_GUID_HERE), ProgId("MyVBAAddin.Connect")&gt; _
+Public Class Connect
+   Implements Extensibility.IDTExtensibility2
+
+   Private _VBE As VBAExtensibility.VBE
+   Private _AddIn As VBAExtensibility.AddIn
+
+   Private Sub OnConnection(Application As Object, ConnectMode As Extensibility.ext_ConnectMode, _
+      AddInInst As Object, ByRef custom As System.Array) Implements IDTExtensibility2.OnConnection
+
+      Try
+
+         _VBE = DirectCast(Application, VBAExtensibility.VBE)
+         _AddIn = DirectCast(AddInInst, VBAExtensibility.AddIn)
+
+         Select Case ConnectMode
+
+            Case Extensibility.ext_ConnectMode.ext_cm_Startup
+               ' OnStartupComplete will be called
+
+            Case Extensibility.ext_ConnectMode.ext_cm_AfterStartup
+               InitializeAddIn()
+
+         End Select
+
+      Catch ex As Exception
+
+         MessageBox.Show(ex.ToString())
+
+      End Try
+
+   End Sub
+
+   Private Sub OnDisconnection(RemoveMode As Extensibility.ext_DisconnectMode, _
+      ByRef custom As System.Array) Implements IDTExtensibility2.OnDisconnection
+
+   End Sub
+
+   Private Sub OnStartupComplete(ByRef custom As System.Array) _
+      Implements IDTExtensibility2.OnStartupComplete
+
+      InitializeAddIn()
+
+   End Sub
+
+   Private Sub OnAddInsUpdate(ByRef custom As System.Array) Implements IDTExtensibility2.OnAddInsUpdate
+
+   End Sub
+
+   Private Sub OnBeginShutdown(ByRef custom As System.Array) Implements IDTExtensibility2.OnBeginShutdown
+
+   End Sub
+
+   Private Sub InitializeAddIn()
+
+      MessageBox.Show(_AddIn.ProgId &amp; " loaded in VBA editor version " &amp; _VBE.Version)
+
+   End Sub
+
+End Class
+</pre>
+
+<ul>
+   <li>Build the assembly.</li>
+   <li>To register the .NET assembly as COM component open a DOS (Command) window with admin 
+         rights (locate the C:\Windows\System32\cmd.exe file and right-click its &quot;Run as 
+         administrator&quot; context menu) and type:
+      <ul>
+         <li>To register the .NET assembly as 64-bit component:<br/>
+               <br/>
+               C:\Windows\Microsoft.NET\<strong>Framework64</strong>\v2.0.50727\regasm.exe /codebase 
+               &quot;&lt;path-to-assembly&gt;\MyVBAAddin.dll&quot;<br/>
+&nbsp;</li>
+         <li>To register the .NET assembly as 32-bit component:<br/>
+            <br/>
+               C:\Windows\Microsoft.NET\<strong>Framework</strong>\v2.0.50727\regasm.exe /codebase 
+               &quot;&lt;path-to-assembly&gt;\MyVBAAddin.dll&quot;<br/>
+          </li>
+      </ul>
+      <br/>
+      You should get a &quot;Types registered successfully&quot; output message.</li>
+   <li>To register the .NET assembly as VBA add-in:
+         <ul>
+            <li>To register it as add-in for the VBA editor 64-bit create the registry key:<br/>
+               <br/>
+               HKEY_CURRENT_USER\Software\Microsoft\VBA\VBE\6.0\<strong>Addins64</strong>\MyVBAAddIn.Connect<br/>
+               <br/>
+            </li>
+            <li>To register it as add-in for the VBA editor 32-bit create the registry key:<br/>
+               <br/>
+               HKEY_CURRENT_USER\Software\Microsoft\VBA\VBE\6.0\<strong>Addins</strong>\MyVBAAddIn.Connect<br/>
+               <br/>
+            </li>
+            <li>Inside that registry key, create the following Names and Values:<br/>
+               <br/>
+               <table>
+                  <tr>
+                     <td style="width: 137px">
+                        <strong>Name</strong>
+                     </td>
+                     <td style="width: 181px">
+                        <strong>Type</strong>
+                     </td>
+                     <td style="width: 135px">
+                        <strong>Value</strong>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td style="width: 137px">
+                        FriendlyName
+                     </td>
+                     <td style="width: 181px">
+                        REG_SZ
+                     </td>
+                     <td style="width: 135px">
+                        My VBA Add-in
+                     </td>
+                  </tr>
+                  <tr>
+                     <td style="width: 137px">
+                        Description
+                     </td>
+                     <td style="width: 181px">
+                        REG_SZ
+                     </td>
+                     <td style="width: 135px">
+                        My VBA Add-in</td>
+                  </tr>
+                  <tr>
+                     <td style="width: 137px">
+                        LoadBehavior
+                     </td>
+                     <td style="width: 181px">
+                        DWORD 32-bit
+                     </td>
+                     <td style="width: 135px">
+                        0
+                     </td>
+                  </tr>
+               </table>
+               <br/>
+               Notice that VBA add-ins are registered only for the current user; they can not 
+               be registered in the HKEY_LOCAL_MACHINE hive for all users.<br/>
+               <br/>
+            </li>
+         </ul>
+   </li>
+   <li>Open a Office application.</li>
+   <li>Open its VBA editor.</li>
+   <li>Go to the &quot;Add-Ins&quot;, &quot;Add-In Manager...&quot; menu to check that the add-in is 
+      correctly registered.</li>
+   <li>Load the add-in. You should see the message box &quot;MyVBAAddin.Connect loaded in 
+      VBA editor version m.n&quot;</li>
+</ul>
+
+<p class="article_section">Related articles</p>
+<ul>
+   <li><a href="MZ2012015.aspx">HOWTO: Adding buttons, commandbars and toolbars to the VBA editor of Office from an add-in with Visual Studio .NET</a></li>
+   <li><a href="MZ2012016.aspx">HOWTO: Create a button with a custom picture for the VBA editor of Office from an add-in with Visual Studio .NET.</a></li>
+   <li><a href="MZ2012014.aspx">HOWTO: Debug an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a></li>
+   <li><a href="MZ2012011.aspx">HOWTO: Generate Interop assemblies to create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a></li>
+   <li><a href="MZ2012017.aspx">HOWTO: Create a toolwindow for the VBA editor of Office from an add-in with Visual Studio .NET.</a></li>
+   <li><a href="MZ2012019.aspx">HOWTO: Create a setup for an add-in for the VBA editor of Microsoft Office for the current user (not requiring admin rights) using Inno Setup.</a></li>
+</ul>
+
+
+               </div>
+            </td>
+         </tr>
+      </table>
+
+      <table cellspacing="0" cellpadding="0" class="table_footer"><tr><td class="td_footer_left" width="10px"></td><td class="td_footer_center">Copyright © 2000-2021 MZTools Software. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;<a class="a_white_link" href="/web/20210917153659/https://www.mztools.com/legal_notice.aspx">Legal Notice</a></td><td class="td_footer_right" width="10px"></td></tr></table>
+
+   </div>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 15:36:59 Sep 17, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:31:15 Oct 08, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 54.056
+  exclusion.robots: 0.833
+  exclusion.robots.policy: 0.207
+  RedisCDXSource: 0.816
+  esindex: 0.007
+  LoadShardBlock: 35.183 (3)
+  PetaboxLoader3.datanode: 41.397 (4)
+  CDXLines.iter: 14.722 (3)
+  load_resource: 781.604
+  PetaboxLoader3.resolve: 28.466
+-->

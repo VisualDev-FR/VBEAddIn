@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app212.us.archive.org';v.server_ms=70650;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=U25-Dms9" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://www.mztools.com/articles/2012/MZ2012016.aspx","20211024062759","https://web.archive.org/","web","/_static/",
+	      "1635056879");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=fantwOh2" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-15"/>
+<title>
+	HOWTO: Create a button with a custom picture for the VBA editor of Office from an add-in with Visual Studio .NET.
+</title><link rel="stylesheet" type="text/css" href="/web/20211024062759cs_/https://www.mztools.com/css/mztools.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/web/20211024062759im_/https://www.mztools.com/images/favicon.ico"/><link rel="apple-touch-icon" href="/web/20211024062759im_/https://www.mztools.com/images/apple-touch-icon.png"/><link rel="apple-touch-icon" sizes="57x57" href="/web/20211024062759im_/https://www.mztools.com/images/apple-touch-icon-57x57.png"/><link rel="apple-touch-icon" sizes="72x72" href="/web/20211024062759im_/https://www.mztools.com/images/apple-touch-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/web/20211024062759im_/https://www.mztools.com/images/apple-touch-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/web/20211024062759im_/https://www.mztools.com/images/apple-touch-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/web/20211024062759im_/https://www.mztools.com/images/apple-touch-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/web/20211024062759im_/https://www.mztools.com/images/apple-touch-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/web/20211024062759im_/https://www.mztools.com/images/apple-touch-icon-152x152.png"/>
+
+   <script type="text/javascript" src="/web/20211024062759js_/https://www.mztools.com/scripts/mztools.js"></script>
+   <script type="text/javascript" src="/web/20211024062759js_/https://www.mztools.com/scripts/google-analytics.js"></script>
+ </head>
+<body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  /*min-width:800px !important;*/
+}
+</style>
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20211024062759/https%3A//www.mztools.com/articles/2012/MZ2012016.aspx"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="/_static/images/toolbar/wayback-toolbar-logo-100.png, /_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, /_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="https://www.mztools.com/articles/2012/MZ2012016.aspx" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20211024062759" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+		<div class="s" id="wm-nav-captures" style="flex:1;">
+	  	  <a class="t" href="/web/20211024062759*/https://www.mztools.com/articles/2012/MZ2012016.aspx" title="See a list of every capture for this URL">6 captures</a>
+	  <div class="r" title="Timespan for captures of this URL">07 Oct 2012 - 24 Oct 2021</div>
+	  </div>
+	<div class="k">
+	  <a href="" id="wm-graph-anchor">
+	    <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+	      <canvas id="wm-sparkline-canvas" width="675" height="27" border="0"></canvas>
+	    </div>
+	  </a>
+	</div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+	<tbody>
+	  <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+	  <tr class="m">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20160828120131/http://www.mztools.com:80/articles/2012/MZ2012016.aspx" title="28 Aug 2016"><strong>Aug</strong></a></td>
+	    <td class="c" id="displayMonthEl" title="You are here: 06:27:59 Oct 24, 2021">OCT</td>
+	    <td class="f" nowrap="nowrap">Nov</td>
+	  </tr>
+	  <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+	  <tr class="d">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20160828120131/http://www.mztools.com:80/articles/2012/MZ2012016.aspx" title="12:01:31 Aug 28, 2016"><img src="/_static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a></td>
+	    <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 06:27:59 Oct 24, 2021">24</td>
+	    <td class="f" nowrap="nowrap"><img src="/_static/images/toolbar/wm_tb_nxt_off.png" alt="Next capture" width="14" height="16" border="0" /></td>
+	  </tr>
+	  <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+	  <tr class="y">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20160828120131/http://www.mztools.com:80/articles/2012/MZ2012016.aspx" title="28 Aug 2016"><strong>2016</strong></a></td>
+	    <td class="c" id="displayYearEl" title="You are here: 06:27:59 Oct 24, 2021">2021</td>
+	    <td class="f" nowrap="nowrap">2022</td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+        	<span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#"
+	     title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+	</span>
+        	<a class="xxs" href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+	<a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20211024062759/http://web.archive.org/screenshot/https://www.mztools.com/articles/2012/MZ2012016.aspx"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+	<a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20211024062759/https://www.mztools.com/articles/2012/MZ2012016.aspx" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+	<a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20211024062759/https://www.mztools.com/articles/2012/MZ2012016.aspx" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+	<a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+                    <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/commoncrawl)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/commoncrawl" target="_new"><span class="wm-title">Common Crawl</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Web crawl data from Common Crawl.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20211024062759/https://www.mztools.com/articles/2012/MZ2012016.aspx</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(675,27,25,2,"web","https://www.mztools.com/articles/2012/MZ2012016.aspx","20211024062759",1996,"/_static/",["/_static/css/banner-styles.css?v=fantwOh2","/_static/css/iconochive.css?v=qtvMKcIJ"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+   <div style="width: 1000px; margin-left:auto;margin-right:auto; background-color: #FFFFFF; padding: 6px; border: 1px; border-style: solid; border-color: #A0A0A0;">
+      <table class="non_printable" cellspacing="0" cellpadding="0" width="100%" border="0">
+         <tr>
+            <td style="line-height: 1px; width: 10px"><img height="10" width="10" alt="" src="/web/20211024062759im_/https://www.mztools.com/images/borders/top_left_dark_blue.png"/></td>
+            <!-- We need to use width: 980px rather than width: 100% to work in IE 8.0 -->
+            <td style="line-height: 1px; width: 980px; background-color: #04223A" colspan="3"></td>
+            <td style="line-height: 1px; width: 10px"><img height="10" width="10" alt="" src="/web/20211024062759im_/https://www.mztools.com/images/borders/top_right_dark_blue.png"/></td>
+         </tr>
+         <tr>
+            <td colspan="5" style="background-color: #04223A; vertical-align: bottom; text-align: center"><a href="https://web.archive.org/web/20211024062759/http://www.mztools.com/"><img src="/web/20211024062759im_/https://www.mztools.com/images/mztools.png" style="border-width: 0" width="250" height="50" alt="Logo"/></a></td>
+         </tr>
+         <tr>
+            <td style="line-height: 1px; width: 10px"><img src="/web/20211024062759im_/https://www.mztools.com/images/borders/bottom_left_dark_blue.png" height="10" width="10" alt=""/></td>
+            <td style="line-height: 1px; width: 100%; background-color: #04223A" colspan="3"></td>
+            <td style="line-height: 1px; width: 10px"><img src="/web/20211024062759im_/https://www.mztools.com/images/borders/bottom_right_dark_blue.png" height="10" width="10" alt=""/></td>
+         </tr>
+      </table>
+      <table class="table_central" cellspacing="0" cellpadding="0" width="100%" border="0">
+         <tr>
+            <td id="Content" class="td_content">
+               <div>
+                  
+
+<table cellspacing="0" cellpadding="0" class="table_header1"><tr><td class="td_header1_left" width="10px"></td><td class="td_header1_center"><b>HOWTO: Create a button with a custom picture for the VBA editor of Office from an add-in with Visual Studio .NET.</b></td><td class="td_header1_right" width="10px"></td></tr></table><br/>
+<table border="0">
+	<tr>
+		<td><b>Author</b>: </td>
+		<td>Carlos J. Quintero (Microsoft MVP)</td>
+		<td class="td_article_header"><b>Applies to</b>:</td>
+		<td>Microsoft Office 64-bit</td>
+	</tr>
+	<tr>
+		<td><b>Date</b>:</td>
+		<td>September 2012</td>
+		<td>&nbsp;</td>
+		<td>Microsoft Office 32-bit</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+
+<span class="article_section">Introduction</span>
+   <p>This article explains how to add a CommandBarButton with a custom, transparent, 
+      picture from an 
+       add-in for the VBA editor of Office using Visual Studio .NET and the .NET 
+       Framework.</p>
+<span class="article_section">More information</span>
+<p>The CommandBarButton class provides de Picture property (for the picture) and 
+   the Mask property (to define the pixels of the picture that should be 
+   transparent, using the white color for transparent pixels and the black color 
+   for non-transparent pixels). However, those properties are COM-based pictures 
+   (Stdole.IPictureDisp). This article shows how to:</p>
+   <ul>
+      <li>Get a Stdole.IPictureDisp from a .NET System.Drawing.Bitmap.</li>
+      <li>Generate a Mask bitmap automatically from a Picture bitmap, given a known color 
+         to make it transparent.</li>
+   </ul>
+   <p>To create the sample use the following steps.</p>
+   <ul>
+      <li>Create an add-in for the VBA editor of Microsoft Office as explained in the 
+    article <a href="MZ2012013.aspx">HOWTO: Create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a> 
+    and use this code in the Connect.vb class.</li>
+      <li>In the Solution Explorer, right-click in the project node and click the &quot;Add&quot;, 
+         &quot;New Item...&quot; menu entry.</li>
+      <li>Select the &quot;Resources File&quot; template, that will be named Resource1.resx. Note: 
+         this sample will use a resources file to get the .NET bitmap, but you can use an 
+         ImageList, etc. By default the resources file is embedded with the assembly dll 
+         (select the Resource1.resx file in the Solution Explorer, show the Properties 
+         window and see the &quot;Build Action&quot; property set to the &quot;Embedded Resource&quot; 
+         value).</li>
+      <li>In the Resource1.resx document window, click the first dropdown and change it 
+         from &quot;Strings&quot; to &quot;Images&quot;.</li>
+      <li>Click the &quot;Add Resource&quot; dropdown and click &quot;New Image&quot;, &quot;BMP Image...&quot;. Name 
+         the new resource &quot;Image1&quot;.</li>
+      <li>In the Properties window change the dimensions of the bitmap to 16x16, and the 
+         colors from 8-bit to 24-bit.</li>
+      <li>Draw the bitmap using the Magenta color (RGB=255,0,255) for the transparent 
+         areas. Note: you can use any color as the transparent color, as long as you 
+         change the color in the code below (in the call to the GetMaskPicture method).</li>
+      <li>Change the code of the Connect.vb file by the code below. The code creates a 
+         button with a custom picture at the end of the Standard toolbar.</li>
+   </ul>
+
+<table width="100%" style="border-bottom-style:solid; border-bottom-color:Blue; border-bottom-width:1px"><tr><td>Language: VB.NET</td><td style="text-align:right"><span style="color:Blue; cursor:pointer" onclick="CopyToClipboard(document.getElementById('Code1'));">&nbsp;&nbsp;&nbsp;<img alt="Copy Code" style="border-style:none" src="/web/20211024062759im_/https://www.mztools.com/images/other/copy_code.png"/>&nbsp;Copy Code (IE only)</span></td></tr></table>
+
+<pre class="article_source_code" id="Code1">
+Imports MyCompany.Interop
+Imports MyCompany.Interop.Extensibility
+Imports System.Windows.Forms
+Imports System.Runtime.InteropServices
+Imports Microsoft.Office.Core
+Imports System.Drawing
+
+&lt;ComVisible(True), Guid(PUT_NEW_GUID_HERE), ProgId("MyVBAAddin.Connect")&gt; _
+Public Class Connect
+   Implements IDTExtensibility2
+
+   Private _VBE As VBAExtensibility.VBE
+   Private _AddIn As VBAExtensibility.AddIn
+   Private WithEvents _CommandBarButton As CommandBarButton
+
+   Private Class ImageToPictureDispConverter
+      Inherits AxHost
+
+      Friend Sub New()
+         MyBase.New("{63109182-966B-4e3c-A8B2-8BC4A88D221C}")
+      End Sub
+
+      Friend Function GetIPictureDispFromImage(ByVal img As Image) As Stdole.IPictureDisp
+
+         Dim picture As Stdole.IPictureDisp
+
+         picture = CType(AxHost.GetIPictureDispFromPicture(img), Stdole.IPictureDisp)
+
+         Return picture
+
+      End Function
+
+   End Class
+
+   Private Sub OnConnection(Application As Object, ConnectMode As ext_ConnectMode, AddInInst As Object, _
+      ByRef custom As System.Array) Implements IDTExtensibility2.OnConnection
+
+      Try
+
+         _VBE = DirectCast(Application, VBAExtensibility.VBE)
+         _AddIn = DirectCast(AddInInst, VBAExtensibility.AddIn)
+
+         Select Case ConnectMode
+
+            Case ext_ConnectMode.ext_cm_Startup
+               ' OnStartupComplete will be called
+
+            Case ext_ConnectMode.ext_cm_AfterStartup
+               InitializeAddIn()
+
+         End Select
+
+      Catch ex As Exception
+
+         MessageBox.Show(ex.ToString())
+
+      End Try
+
+   End Sub
+
+   Private Sub OnDisconnection(RemoveMode As ext_DisconnectMode, _
+      ByRef custom As System.Array) Implements IDTExtensibility2.OnDisconnection
+
+      If Not _CommandBarButton Is Nothing Then
+
+         _CommandBarButton.Delete()
+         _CommandBarButton = Nothing
+
+      End If
+
+   End Sub
+
+   Private Sub OnStartupComplete(ByRef custom As System.Array) _
+      Implements IDTExtensibility2.OnStartupComplete
+
+      InitializeAddIn()
+
+   End Sub
+
+   Private Sub OnAddInsUpdate(ByRef custom As System.Array) _
+      Implements IDTExtensibility2.OnAddInsUpdate
+
+   End Sub
+
+   Private Sub OnBeginShutdown(ByRef custom As System.Array) Implements IDTExtensibility2.OnBeginShutdown
+
+   End Sub
+
+   Private Function GetMaskPicture(ByVal pictureBitmap As Bitmap, ByVal transparentColor As Color) As Bitmap
+
+      Dim maskBitmap As Bitmap
+      Dim pixelColor As Color
+      Dim width As Integer
+      Dim height As Integer
+      Dim x As Integer
+      Dim y As Integer
+      Dim transparentColorARGB As Integer
+
+      transparentColorARGB = transparentColor.ToArgb
+
+      width = pictureBitmap.Width
+      height = pictureBitmap.Height
+
+      maskBitmap = New Bitmap(width, height, Imaging.PixelFormat.Format24bppRgb)
+
+      For x = 0 To width - 1
+
+         For y = 0 To height - 1
+
+            pixelColor = pictureBitmap.GetPixel(x, y)
+
+            If pixelColor.ToArgb = transparentColorARGB Then
+
+               maskBitmap.SetPixel(x, y, Color.White) ' Transparent pixel
+
+            Else
+
+               maskBitmap.SetPixel(x, y, Color.Black) ' Non-transparent pixel
+
+            End If
+
+         Next
+
+      Next
+
+      Return maskBitmap
+
+   End Function
+
+   Private Sub InitializeAddIn()
+
+      Dim standardCommandBar As CommandBar
+      Dim commandBarControl As CommandBarControl
+      Dim maskBitmap As Bitmap
+      Dim pictureBitmap As Bitmap
+      Dim imageToPictureDispConverter As ImageToPictureDispConverter
+
+      Try
+
+         standardCommandBar = _VBE.CommandBars.Item("Standard")
+
+         commandBarControl = standardCommandBar.Controls.Add(MsoControlType.msoControlButton)
+
+         _CommandBarButton = DirectCast(commandBarControl, CommandBarButton)
+
+         _CommandBarButton.Caption = "My button"
+         _CommandBarButton.BeginGroup = True
+
+         imageToPictureDispConverter = New ImageToPictureDispConverter()
+
+         ' Get a .NET System.Drawing.Bitmap
+         pictureBitmap = My.Resources.Resource1.Image1
+
+         ' Get the Mask
+         maskBitmap = GetMaskPicture(pictureBitmap, Color.Magenta)
+
+         ' Convert the .NET bitmaps to OLE IPictureDisp and assign the picture and mask
+         _CommandBarButton.Picture = imageToPictureDispConverter.GetIPictureDispFromImage(pictureBitmap)
+         _CommandBarButton.Mask = imageToPictureDispConverter.GetIPictureDispFromImage(maskBitmap)
+
+         imageToPictureDispConverter.Dispose()
+
+      Catch ex As Exception
+
+         MessageBox.Show(ex.ToString())
+
+      End Try
+
+   End Sub
+
+   Private Sub _CommandBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, _
+      ByRef CancelDefault As Boolean) Handles _CommandBarButton.Click
+
+      MessageBox.Show("Clicked " &amp; Ctrl.Caption)
+
+   End Sub
+
+End Class
+</pre>
+
+<p class="article_section">Related articles</p>
+<ul>
+   <li><a href="MZ2012015.aspx">HOWTO: Adding buttons, commandbars and toolbars to the VBA editor of Office from an add-in with Visual Studio .NET</a></li>
+   <li><a href="MZ2012013.aspx">HOWTO: Create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a></li>
+   <li><a href="MZ2012020.aspx">BUG: CommandBar.Name property localized in VBA editor of Office</a></li>
+</ul>
+
+
+               </div>
+            </td>
+         </tr>
+      </table>
+
+      <table cellspacing="0" cellpadding="0" class="table_footer"><tr><td class="td_footer_left" width="10px"></td><td class="td_footer_center">Copyright © 2021 MZTools Software. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;<a class="a_white_link" href="/web/20211024062759/https://www.mztools.com/legal_notice.aspx">Legal Notice</a></td><td class="td_footer_right" width="10px"></td></tr></table>
+
+   </div>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 06:27:59 Oct 24, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:35:39 Oct 08, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 70582.332
+  exclusion.robots: 0.225
+  exclusion.robots.policy: 0.216
+  cdx.remote: 0.06
+  esindex: 0.01
+  LoadShardBlock: 61725.92 (3)
+  PetaboxLoader3.datanode: 61711.437 (6)
+  CDXLines.iter: 12.261 (3)
+  load_resource: 61.824
+  PetaboxLoader3.resolve: 36.723
+-->

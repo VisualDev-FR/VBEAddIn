@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app221.us.archive.org';v.server_ms=1222;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=U25-Dms9" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://www.mztools.com/articles/2012/MZ2012019.aspx","20211024071525","https://web.archive.org/","web","/_static/",
+	      "1635059725");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=fantwOh2" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-15"/>
+<title>
+	HOWTO: Create a setup for an add-in for the VBA editor of Microsoft Office for the current user (not requiring admin rights) using Inno Setup.
+</title><link rel="stylesheet" type="text/css" href="/web/20211024071525cs_/https://www.mztools.com/css/mztools.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/web/20211024071525im_/https://www.mztools.com/images/favicon.ico"/><link rel="apple-touch-icon" href="/web/20211024071525im_/https://www.mztools.com/images/apple-touch-icon.png"/><link rel="apple-touch-icon" sizes="57x57" href="/web/20211024071525im_/https://www.mztools.com/images/apple-touch-icon-57x57.png"/><link rel="apple-touch-icon" sizes="72x72" href="/web/20211024071525im_/https://www.mztools.com/images/apple-touch-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/web/20211024071525im_/https://www.mztools.com/images/apple-touch-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/web/20211024071525im_/https://www.mztools.com/images/apple-touch-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/web/20211024071525im_/https://www.mztools.com/images/apple-touch-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/web/20211024071525im_/https://www.mztools.com/images/apple-touch-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/web/20211024071525im_/https://www.mztools.com/images/apple-touch-icon-152x152.png"/>
+
+   <script type="text/javascript" src="/web/20211024071525js_/https://www.mztools.com/scripts/mztools.js"></script>
+   <script type="text/javascript" src="/web/20211024071525js_/https://www.mztools.com/scripts/google-analytics.js"></script>
+ </head>
+<body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  /*min-width:800px !important;*/
+}
+</style>
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20211024071525/https%3A//www.mztools.com/articles/2012/MZ2012019.aspx"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="/_static/images/toolbar/wayback-toolbar-logo-100.png, /_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, /_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="https://www.mztools.com/articles/2012/MZ2012019.aspx" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20211024071525" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+		<div class="s" id="wm-nav-captures" style="flex:1;">
+	  	  <a class="t" href="/web/20211024071525*/https://www.mztools.com/articles/2012/MZ2012019.aspx" title="See a list of every capture for this URL">9 captures</a>
+	  <div class="r" title="Timespan for captures of this URL">07 Oct 2012 - 24 Oct 2021</div>
+	  </div>
+	<div class="k">
+	  <a href="" id="wm-graph-anchor">
+	    <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+	      <canvas id="wm-sparkline-canvas" width="675" height="27" border="0"></canvas>
+	    </div>
+	  </a>
+	</div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+	<tbody>
+	  <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+	  <tr class="m">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20210127195747/https://www.mztools.com/articles/2012/MZ2012019.aspx" title="27 Jan 2021"><strong>Jan</strong></a></td>
+	    <td class="c" id="displayMonthEl" title="You are here: 07:15:25 Oct 24, 2021">OCT</td>
+	    <td class="f" nowrap="nowrap">Nov</td>
+	  </tr>
+	  <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+	  <tr class="d">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20210127195747/https://www.mztools.com/articles/2012/MZ2012019.aspx" title="19:57:47 Jan 27, 2021"><img src="/_static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a></td>
+	    <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 07:15:25 Oct 24, 2021">24</td>
+	    <td class="f" nowrap="nowrap"><img src="/_static/images/toolbar/wm_tb_nxt_off.png" alt="Next capture" width="14" height="16" border="0" /></td>
+	  </tr>
+	  <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+	  <tr class="y">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20180401164012/http://www.mztools.com:80/articles/2012/MZ2012019.aspx" title="01 Apr 2018"><strong>2018</strong></a></td>
+	    <td class="c" id="displayYearEl" title="You are here: 07:15:25 Oct 24, 2021">2021</td>
+	    <td class="f" nowrap="nowrap">2022</td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+        	<span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#"
+	     title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+	</span>
+        	<a class="xxs" href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+	<a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20211024071525/http://web.archive.org/screenshot/https://www.mztools.com/articles/2012/MZ2012019.aspx"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+	<a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20211024071525/https://www.mztools.com/articles/2012/MZ2012019.aspx" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+	<a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20211024071525/https://www.mztools.com/articles/2012/MZ2012019.aspx" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+	<a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+                    <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/commoncrawl)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/commoncrawl" target="_new"><span class="wm-title">Common Crawl</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Web crawl data from Common Crawl.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20211024071525/https://www.mztools.com/articles/2012/MZ2012019.aspx</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(675,27,25,2,"web","https://www.mztools.com/articles/2012/MZ2012019.aspx","20211024071525",1996,"/_static/",["/_static/css/banner-styles.css?v=fantwOh2","/_static/css/iconochive.css?v=qtvMKcIJ"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+   <div style="width: 1000px; margin-left:auto;margin-right:auto; background-color: #FFFFFF; padding: 6px; border: 1px; border-style: solid; border-color: #A0A0A0;">
+      <table class="non_printable" cellspacing="0" cellpadding="0" width="100%" border="0">
+         <tr>
+            <td style="line-height: 1px; width: 10px"><img height="10" width="10" alt="" src="/web/20211024071525im_/https://www.mztools.com/images/borders/top_left_dark_blue.png"/></td>
+            <!-- We need to use width: 980px rather than width: 100% to work in IE 8.0 -->
+            <td style="line-height: 1px; width: 980px; background-color: #04223A" colspan="3"></td>
+            <td style="line-height: 1px; width: 10px"><img height="10" width="10" alt="" src="/web/20211024071525im_/https://www.mztools.com/images/borders/top_right_dark_blue.png"/></td>
+         </tr>
+         <tr>
+            <td colspan="5" style="background-color: #04223A; vertical-align: bottom; text-align: center"><a href="https://web.archive.org/web/20211024071525/http://www.mztools.com/"><img src="/web/20211024071525im_/https://www.mztools.com/images/mztools.png" style="border-width: 0" width="250" height="50" alt="Logo"/></a></td>
+         </tr>
+         <tr>
+            <td style="line-height: 1px; width: 10px"><img src="/web/20211024071525im_/https://www.mztools.com/images/borders/bottom_left_dark_blue.png" height="10" width="10" alt=""/></td>
+            <td style="line-height: 1px; width: 100%; background-color: #04223A" colspan="3"></td>
+            <td style="line-height: 1px; width: 10px"><img src="/web/20211024071525im_/https://www.mztools.com/images/borders/bottom_right_dark_blue.png" height="10" width="10" alt=""/></td>
+         </tr>
+      </table>
+      <table class="table_central" cellspacing="0" cellpadding="0" width="100%" border="0">
+         <tr>
+            <td id="Content" class="td_content">
+               <div>
+                  
+
+<table cellspacing="0" cellpadding="0" class="table_header1"><tr><td class="td_header1_left" width="10px"></td><td class="td_header1_center"><b>HOWTO: Create a setup for an add-in for the VBA editor of Microsoft Office for the current user (not requiring admin rights) using Inno Setup.</b></td><td class="td_header1_right" width="10px"></td></tr></table><br/>
+<table border="0">
+	<tr>
+		<td><b>Author</b>: </td>
+		<td>Carlos J. Quintero (Microsoft MVP)</td>
+		<td class="td_article_header"><b>Applies to</b>:</td>
+		<td>Microsoft Office 64-bit</td>
+	</tr>
+	<tr>
+		<td><b>Date</b>:</td>
+		<td>September 2012</td>
+		<td>&nbsp;</td>
+		<td>Microsoft Office 32-bit</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+
+<span class="article_section">Introduction</span>
+   <p>
+      This article explains how to create a setup for an add-in for 
+      the VBA editor of Microsoft Office (32-bit or 64-bit) for the current user (not 
+      requiring administrator privileges) using <a href="https://web.archive.org/web/20211024071525/http://www.jrsoftware.org/isinfo.php">Inno Setup</a>, a popular free 
+      installer for Windows.</p>
+   <p>
+      Inno Setup is script-based (not MSI-based) but there is a companion ISTool 
+      script editor that allows you to create the script for its different sections in 
+      a friendly way setting properties in dialog windows. There is also an Inno Setup 
+      preprocessor that can be used to create compilation constants, etc. Inno Setup 
+      and the companion Inno Setup Quick Start Pack with the ISTool and preprocessor 
+      tools can be dowloaded <a href="https://web.archive.org/web/20211024071525/http://www.jrsoftware.org/isdl.php">here</a>. 
+      This article assumes that you are somewhat familiar with Inno Setup.</p>
+<span class="article_section">More information</span>
+<p>The setup sample assumes that you have generated the following input files:</p>
+   <ul>
+      <li>Add-in dll (MyVBAAddin.dll) as explained in the article <a href="MZ2012013.aspx">HOWTO: Create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a>. 
+         This add-in .NET assembly dll is built with the &quot;Any CPU&quot; platform, so it can 
+         behave as 32-bit or 64-bit dll depending on the .NET Framework which loads it 
+         (32-bit or 64-bit).</li>
+      <li>Private Interop assemblies (MyCompany.Interop.Office12.dll, 
+         MyCompany.Interop.Stdole.dll, MyCompany.Interop.Extensibility.dll, 
+         MyCompany.Interop.VBAExtensibility.dll) as explained in the article <a href="MZ2012011.aspx">HOWTO: Generate Interop assemblies to create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a>. 
+         These private interop assemblies will be installed in the same folder of the 
+         add-in dll.</li>
+   </ul>
+   <p>
+      To install the add-in for the current user (not for all users), not requiring 
+         admin rights, the setup does the following:</p>
+   <ul>
+      <li>It copies the files to a per-user folder (AppData), not to C:\Program Files.</li>
+      <li>It registers the add-in dll for COM using the HKEY_CURRENT_USER hive, as 
+         explained in the article <a href="MZ2012018.aspx">INFO: Registry entries to 
+         register an add-in for the VBA editor of Office for the current user without 
+         admin rights</a>.</li>
+   </ul>
+   <p>
+      The setup runs as a 32-bit application on Windows 32-bit, and as a 64-bit 
+      application on Windows 64-bit, so it can register the add-in dll as 64-bit COM 
+      component on Windows 64-bit, which is required for Microsoft Office 2010 64-bit 
+      (it doesn't support 32-bit COM add-ins).</p>
+   <p>
+      The setup doesn't include the installation of the .NET Framework 2.0. If detects 
+      if it is installed, and if not it opens a web page where the user can download 
+      it.</p>
+
+   <p>
+      You will need to adjust the value of constants used at the start of the script 
+      (customization section).</p>
+
+<table width="100%" style="border-bottom-style:solid; border-bottom-color:Blue; border-bottom-width:1px"><tr><td>Language: Text</td><td style="text-align:right"><span style="color:Blue; cursor:pointer" onclick="CopyToClipboard(document.getElementById('Code1'));">&nbsp;&nbsp;&nbsp;<img alt="Copy Code" style="border-style:none" src="/web/20211024071525im_/https://www.mztools.com/images/other/copy_code.png"/>&nbsp;Copy Code (IE only)</span></td></tr></table>
+<pre class="article_source_code" id="Code1">
+[Setup]
+
+; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+; BEGIN CUSTOMIZATION SECTION: Customize these constants
+; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+; Ensure that you use YOUR OWN APP_ID; DO NOT REUSE THIS ONE
+#define APP_ID "{{4EC56406-AD74-492e-8BB4-56E854BE1A1E}"
+
+#define APP_NAME "My VBA Add-in 1.0"
+#define DEST_SUB_DIR "MyVBAAddin"
+#define CONNECT_CLASS_FULL_NAME "MyVBAAddin.Connect"
+#define COMPANY_NAME "My Company"
+#define RUNTIME_VERSION "v2.0.50727"
+#define COPYRIGHT_YEAR "2012"
+
+#define INTEROP_OFFICE_FILE_NAME "MyCompany.Interop.Office12.dll"
+#define INTEROP_STDOLE_FILE_NAME "MyCompany.Interop.Stdole.dll"
+#define INTEROP_EXTENSIBILITY_FILE_NAME "MyCompany.Interop.Extensibility.dll"
+#define INTEROP_VBA_EXTENSIBILITY_FILE_NAME "MyCompany.Interop.VBAExtensibility.dll"
+#define DLL_FILE_NAME "MyVBAAddin.dll"
+#define OUTPUT_FOLDER_NAME ".\Setup"
+#define SETUP_FILE_NAME "MyVBAAddinSetup"
+#define VERSION "1.0.0.00"
+#define CONNECT_PROGID "MyVBAAddin.Connect"
+#define CONNECT_CLSID "{2CA1C920-2D5E-3E17-86D7-24DEB9303A3E}"
+#define ASSEMBLY_FULL_NAME "MyVBAAddin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=869cad219d7a35e2"
+
+; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+; END CUSTOMIZATION SECTION
+; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ArchitecturesAllowed=x86 x64
+
+; The setup must run in 64-bit mode on x64 systems to allow the installation of the VBA add-in for Office 2010 64-bit
+ArchitecturesInstallIn64BitMode=x64 
+
+AppID={#APP_ID}
+VersionInfoVersion={#VERSION}
+OutputBaseFilename={#SETUP_FILE_NAME}
+OutputDir={#OUTPUT_FOLDER_NAME}
+PrivilegesRequired=lowest
+MinVersion=0,5.0.2195
+AppName={#APP_NAME}
+AppVerName={#APP_NAME}
+DefaultGroupName={#APP_NAME}
+AppPublisher={#COMPANY_NAME}
+DefaultDirName={localappdata}\{#COMPANY_NAME}\{#DEST_SUB_DIR}
+Compression=lzma/Max
+SolidCompression=true
+DisableReadyPage=true
+ShowLanguageDialog=no
+UninstallLogMode=append
+DisableProgramGroupPage=true
+VersionInfoCompany={#COMPANY_NAME}
+AppCopyright=Copyright © {#COPYRIGHT_YEAR} {#COMPANY_NAME}
+AlwaysUsePersonalGroup=true
+InternalCompressLevel=Ultra
+AllowNoIcons=true
+DisableDirPage=true
+LanguageDetectionMethod=locale
+
+[Languages]
+; USE ENGLISH AS THE FIRST LANGUAGE!!!
+Name: English; MessagesFile: compiler:Default.isl
+Name: Spanish; MessagesFile: compiler:Languages\Spanish.isl
+
+[Types]
+Name: Custom; Description: Custom; Flags: iscustom
+
+[Files]
+Source: bin\release\{#INTEROP_OFFICE_FILE_NAME};            DestDir: {app}; Flags: ignoreversion;
+Source: bin\release\{#INTEROP_STDOLE_FILE_NAME};            DestDir: {app}; Flags: ignoreversion;
+Source: bin\release\{#INTEROP_VBA_EXTENSIBILITY_FILE_NAME}; DestDir: {app}; Flags: ignoreversion;
+Source: bin\release\{#INTEROP_EXTENSIBILITY_FILE_NAME};     DestDir: {app}; Flags: ignoreversion;
+Source: bin\release\{#DLL_FILE_NAME};                       DestDir: {app}; Flags: ignoreversion; AfterInstall: RegisterAddin()
+
+[UninstallDelete]
+Name: {app}; Type: filesandordirs
+
+[CustomMessages]
+English.NETFramework20NotInstalled=Microsoft .NET Framework 2.0 installation was not detected. 
+Spanish.NETFramework20NotInstalled=No se encontró la instalación de Microsoft .NET Framework 2.0. 
+
+[Run]
+
+[UninstallRun]
+
+[Code]
+var
+   m_IDEsPage: TWizardPage;
+   m_IDEsCheckListBox: TNewCheckListBox;
+
+function IsVBA64Installed(): Boolean;
+var
+   sBitness: String;
+begin
+
+   Result := False
+   
+   if IsWin64() then
+      begin
+         if RegQueryStringValue(HKLM, 'Software\Microsoft\Office\14.0\Outlook', 'Bitness', sBitness) then
+            begin
+               if sBitness = 'x64' then
+                  begin
+                     Result := True
+                  end;
+            end;
+      end;
+end;
+
+function IsVBA32Installed(): Boolean;
+begin
+
+   if RegKeyExists(HKLM32, 'SOFTWARE\Microsoft\Office\10.0') then
+      Result := True
+   else if RegKeyExists(HKLM32, 'SOFTWARE\Microsoft\Office\11.0') then
+      Result := True
+   else if RegKeyExists(HKLM32, 'SOFTWARE\Microsoft\Office\12.0') then
+      Result := True
+   else if RegKeyExists(HKLM32, 'SOFTWARE\Microsoft\Office\14.0') then
+      Result := not IsVBA64Installed()
+   else
+      Result := False
+
+end;
+
+function IsVBA32Selected(): Boolean;
+begin
+   Result := m_IDEsCheckListBox.Checked[0]
+end;
+
+function IsVBA64Selected(): Boolean;
+begin
+   Result := m_IDEsCheckListBox.Checked[1]
+end;
+
+procedure IDEsCheckListBoxOnClickCheck(Sender: TObject);
+var
+   index: Integer;
+begin
+
+   WizardForm.NextButton.Enabled := False;
+
+   for index := 0 to m_IDEsCheckListBox.Items.Count - 1 do
+      begin
+         if m_IDEsCheckListBox.Checked[index] then
+            WizardForm.NextButton.Enabled := True;
+      end; 
+end;
+
+//***************************************************************************************************
+// InnoSetup event function                                                                        
+//***************************************************************************************************
+function InitializeSetup(): Boolean;
+var
+   iErrorCode: Integer;
+begin
+   // Detect if Microsoft .NET Framework 2.0 is installed
+   if Not RegKeyExists(HKLM, 'SOFTWARE\Microsoft\.NETFramework\v2.0.50727') then
+      begin
+         MsgBox(ExpandConstant('{cm:NETFramework20NotInstalled}'), mbCriticalError, mb_Ok);
+         ShellExec('open', 'http://msdn.microsoft.com/en-us/netframework/aa731542', '', '', SW_SHOW, ewNoWait, iErrorCode) 
+         Result := False;
+      end
+   else
+      begin
+         Result := True;
+      end
+end;
+
+procedure CreateComponentsPage();
+var
+   IDEsLabel: TLabel;
+   bVBA32Enabled: Boolean;
+   bVBA64Enabled: Boolean;
+   bVBA32Checked: Boolean;
+   bVBA64Checked: Boolean;
+begin
+
+   m_IDEsPage := CreateCustomPage(wpSelectComponents, SetupMessage(msgWizardSelectComponents), SetupMessage(msgSelectComponentsDesc));
+   
+   IDEsLabel := TLabel.Create(m_IDEsPage);
+   IDEsLabel.Caption := SetupMessage(msgSelectComponentsLabel2);
+   IDEsLabel.Width := m_IDEsPage.SurfaceWidth;
+   IDEsLabel.Height := ScaleY(40);
+   IDEsLabel.AutoSize := False;
+   IDEsLabel.WordWrap := True;
+   IDEsLabel.Parent := m_IDEsPage.Surface;
+
+   m_IDEsCheckListBox := TNewCheckListBox.Create(m_IDEsPage);
+   m_IDEsCheckListBox.Top := IDEsLabel.Top + IDEsLabel.Height + ScaleY(8);
+   m_IDEsCheckListBox.Width := m_IDEsPage.SurfaceWidth;
+   m_IDEsCheckListBox.Height := ScaleX(100);
+   m_IDEsCheckListBox.Flat := True;
+   m_IDEsCheckListBox.Parent := m_IDEsPage.Surface;
+   m_IDEsCheckListBox.OnClickCheck := @IDEsCheckListBoxOnClickCheck;
+
+   bVBA32Enabled := IsVBA32Installed();
+   bVBA64Enabled := IsVBA64Installed();
+
+   bVBA32Checked := bVBA32Enabled;
+   bVBA64Checked := bVBA64Enabled;
+  
+   m_IDEsCheckListBox.AddCheckBox('My VBA Add-in - VBA Editor 32-bit (Office 2003/2007/2010 32-bit)', '', 0, 
+     bVBA32Checked, bVBA32Enabled, False, True, nil)
+   m_IDEsCheckListBox.AddCheckBox('My VBA Add-in - VBA Editor 64-bit (Office 2010 64-bit)', '',           0, 
+      bVBA64Checked, bVBA64Enabled, False, True, nil)
+
+end;
+
+//***************************************************************************************************
+// InnoSetup event function                                                                        
+//***************************************************************************************************
+procedure InitializeWizard();
+begin
+
+   CreateComponentsPage();
+
+end;
+
+procedure RegisterCOMClass(const iRootKey: Integer; const sProgID: String; const sCLSID: String; const sClass: String; 
+  const sFileName: String; const sAssemblyFullName: String);
+var
+   sCodeBase: String;
+   sFileFullName: String;
+begin
+
+   sFileFullName := ExpandConstant('{app}') + '\' + sFileName;
+   StringChangeEx(sFileFullName, '\', '/', True);
+   sCodeBase := 'file:///' + sFileFullName;
+
+   RegWriteStringValue(iRootKey, 'Software\Classes\' + sProgID, '', sProgID);
+   RegWriteStringValue(iRootKey, 'Software\Classes\' + sProgID + '\CLSID', '', sCLSID);
+
+   RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID, '', sClass);
+
+   (* Do not add this implemented category that identifies .NET components:
+
+      RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + '\Implemented Categories', '', '');
+      RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + 
+        '\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}', '', '');
+   
+      because it is not absolutely needed and creating it could cause the following error:
+
+      FIX: "Access to the Registry Key Denied" Error Message When You Register .NET Assembly for COM Interop
+      http://support.microsoft.com/kb/327507
+   *)
+
+   RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + '\InprocServer32', '', 'mscoree.dll');
+   RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + '\InprocServer32', 'Assembly', sAssemblyFullName);
+   RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + '\InprocServer32', 'Class', sClass);
+   RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + '\InprocServer32', 'CodeBase', sCodeBase);
+   RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + '\InprocServer32', 'RuntimeVersion', '{#RUNTIME_VERSION}');
+   RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + '\InprocServer32', 'ThreadingModel', 'Both');
+
+   RegWriteStringValue(iRootKey, 'Software\Classes\CLSID\' + sCLSID + '\ProgId', '', sProgID);
+
+end;
+
+procedure UnregisterCOMClass(const iRootKey: Integer; const sProgID: String; const sCLSID: String);
+begin
+
+   if RegKeyExists(iRootKey, 'Software\Classes\' + sProgID) then
+      begin
+         RegDeleteKeyIncludingSubkeys(iRootKey, 'Software\Classes\' + sProgID);
+      end;
+
+   if RegKeyExists(iRootKey, 'Software\Classes\CLSID\' + sCLSID) then   
+      begin
+         RegDeleteKeyIncludingSubkeys(iRootKey, 'Software\Classes\CLSID\' + sCLSID);
+      end;
+
+end;
+
+procedure RegisterAddinForIDE(const iRootKey: Integer; const sAddinSubKey: String; const sProgIDConnect: String);
+begin
+
+   RegWriteStringValue(iRootKey, sAddinSubKey + '\' + sProgIDConnect, 'FriendlyName', '{#APP_NAME}');
+   RegWriteStringValue(iRootKey, sAddinSubKey + '\' + sProgIDConnect, 'Description' , '{#APP_NAME}');
+   RegWriteDWordValue (iRootKey, sAddinSubKey + '\' + sProgIDConnect, 'LoadBehavior', 3);
+
+end;
+
+procedure UnregisterAddinForIDE(const iRootKey: Integer; const sAddinSubKey: String; const sProgIDConnect: String);
+begin
+
+   if RegKeyExists(iRootKey, sAddinSubKey + '\' + sProgIDConnect) then
+      begin
+         RegDeleteKeyIncludingSubkeys(iRootKey, sAddinSubKey + '\' + sProgIDConnect);
+      end;
+
+end;
+
+procedure RegisterAddinForCOM(const iRootKey: Integer; const sProgIDConnect: String; const sCLSIDConnect: String; 
+  const sConnectClassFullName: String; const sFileName: String; const sAssemblyFullName: String);
+begin
+
+   RegisterCOMClass(iRootKey, sProgIDConnect, sCLSIDConnect, sConnectClassFullName, sFileName, sAssemblyFullName);
+
+   // Here you would register toolwindow usercontrols if required
+     
+end;
+
+procedure UnregisterAddinForCOM(const iRootKey: Integer; const sProgIDConnect: String; const sCLSIDConnect: String);
+begin
+
+   UnregisterCOMClass(iRootKey, sProgIDConnect, sCLSIDConnect);
+
+   // Here you would unregister toolwindow usercontrols if required
+
+end;
+
+procedure RegisterAddin();
+begin
+   
+   if IsVBA32Selected() then
+      begin
+         RegisterAddinForCOM(HKCU32, '{#CONNECT_PROGID}', '{#CONNECT_CLSID}', '{#CONNECT_CLASS_FULL_NAME}', 
+           '{#DLL_FILE_NAME}', '{#ASSEMBLY_FULL_NAME}');
+         RegisterAddinForIDE(HKCU32, 'Software\Microsoft\VBA\VBE\6.0\Addins', '{#CONNECT_PROGID}');
+      end;
+
+   if IsVBA64Selected() then
+      begin
+         RegisterAddinForCOM(HKCU64, '{#CONNECT_PROGID}', '{#CONNECT_CLSID}', '{#CONNECT_CLASS_FULL_NAME}', 
+            '{#DLL_FILE_NAME}', '{#ASSEMBLY_FULL_NAME}');
+         RegisterAddinForIDE(HKCU64, 'Software\Microsoft\VBA\VBE\6.0\Addins64', '{#CONNECT_PROGID}');
+      end;
+
+end;
+
+procedure UnregisterAddin();
+begin
+
+   UnregisterAddinForIDE(HKCU32, 'Software\Microsoft\VBA\VBE\6.0\Addins', '{#CONNECT_PROGID}');
+   UnregisterAddinForCOM(HKCU32, '{#CONNECT_PROGID}', '{#CONNECT_CLSID}');
+
+   if IsWin64() then
+      begin
+         UnregisterAddinForIDE(HKCU64, 'Software\Microsoft\VBA\VBE\6.0\Addins64', '{#CONNECT_PROGID}');
+         UnregisterAddinForCOM(HKCU64, '{#CONNECT_PROGID}', '{#CONNECT_CLSID}');
+      end
+end;
+
+//***************************************************************************************************
+// InnoSetup event function                                                                        
+//***************************************************************************************************
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+
+   if CurUninstallStep = usUninstall then
+      begin
+         UnregisterAddin()
+      end;
+
+end;
+</pre>
+
+<p class="article_section">Related articles</p>
+
+<ul>
+   <li><a href="MZ2012013.aspx">HOWTO: Create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a></li>
+   <li><a href="MZ2012018.aspx">INFO: Registry entries to register an add-in for the VBA editor of Office for the current user without admin rights</a></li>
+   <li><a href="MZ2012011.aspx">HOWTO: Generate Interop assemblies to create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a></li>
+
+</ul>
+
+
+               </div>
+            </td>
+         </tr>
+      </table>
+
+      <table cellspacing="0" cellpadding="0" class="table_footer"><tr><td class="td_footer_left" width="10px"></td><td class="td_footer_center">Copyright © 2021 MZTools Software. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;<a class="a_white_link" href="/web/20211024071525/https://www.mztools.com/legal_notice.aspx">Legal Notice</a></td><td class="td_footer_right" width="10px"></td></tr></table>
+
+   </div>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 07:15:25 Oct 24, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:30:41 Oct 08, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 1040.185
+  exclusion.robots: 0.527
+  exclusion.robots.policy: 0.519
+  RedisCDXSource: 0.996
+  esindex: 0.009
+  LoadShardBlock: 1022.511 (3)
+  PetaboxLoader3.datanode: 952.049 (4)
+  CDXLines.iter: 13.501 (3)
+  load_resource: 177.136
+  PetaboxLoader3.resolve: 81.425
+-->

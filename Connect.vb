@@ -1,16 +1,19 @@
-﻿Imports Microsoft.Office.Interop
+﻿Imports System.Windows.Forms
 Imports Extensibility
-Imports System.Windows.Forms
-Imports System.Runtime.InteropServices
 Imports Microsoft.Vbe.Interop
 Imports Microsoft.Office.Core
 
-<ComVisible(True), Guid("875B3991-9A51-48AC-A328-ABE02EB53279"), ProgId("VBEAddIn.Connect")>
+Imports System.Runtime.InteropServices
+Imports System.Drawing
+
 Public Class Connect
     Implements Extensibility.IDTExtensibility2
 
     Private _VBE As VBE
     Private _AddIn As AddIn
+
+    Private WithEvents _CommandBarButton1 As CommandBarButton
+    Private _toolWindow1 As Window
 
     Private Sub OnConnection(Application As Object, ConnectMode As Extensibility.ext_ConnectMode,
        AddInInst As Object, ByRef custom As System.Array) Implements IDTExtensibility2.OnConnection
@@ -30,6 +33,13 @@ Public Class Connect
     Private Sub OnDisconnection(RemoveMode As Extensibility.ext_DisconnectMode,
        ByRef custom As System.Array) Implements IDTExtensibility2.OnDisconnection
 
+        If Not _CommandBarButton1 Is Nothing Then
+
+            _CommandBarButton1.Delete()
+            _CommandBarButton1 = Nothing
+
+        End If
+
     End Sub
 
     Private Sub OnStartupComplete(ByRef custom As System.Array) _
@@ -46,14 +56,83 @@ Public Class Connect
     End Sub
 
     Private Sub InitializeAddIn()
-        'MessageBox.Show(_AddIn.ProgId & " loaded in VBA editor version " & _VBE.Version)
 
-        Dim vbProj As Object
-        For Each vbProj In _VBE.VBProjects
 
-            Dim m_Window As Microsoft.Vbe.Interop.Window = _VBE.Windows.CreateToolWindow(_AddIn, "VBEAddIn.Connect", "MyWindow", "AnyString", Nothing)
+        Dim standardCommandBar As CommandBar
+        Dim commandBarControl As CommandBarControl
 
-        Next
+        Try
+
+            'standardCommandBar = _VBE.CommandBars.Add("myBar", MsoBarPosition.msoBarTop, Temporary:=True)
+            standardCommandBar = _VBE.CommandBars.Item("Standard")
+
+            commandBarControl = standardCommandBar.Controls.Add(MsoControlType.msoControlButton)
+            _CommandBarButton1 = DirectCast(commandBarControl, CommandBarButton)
+            _CommandBarButton1.Caption = "Toolwindow 1"
+            _CommandBarButton1.FaceId = 59
+            _CommandBarButton1.Style = MsoButtonStyle.msoButtonIconAndCaption
+            _CommandBarButton1.BeginGroup = True
+
+
+        Catch ex As Exception
+
+            MessageBox.Show(ex.ToString())
+
+        End Try
+
+    End Sub
+
+    Private Function CreateToolWindow(ByVal toolWindowCaption As String, ByVal toolWindowGuid As String,
+       ByVal toolWindowUserControl As UserControl) As Window
+
+        Dim userControlObject As Object = Nothing
+        Dim userControlHost As UserControlHost
+        Dim toolWindow As Window
+        Dim progId As String
+
+        ' IMPORTANT: ensure that you use the same ProgId value used in the ProgId attribute of the UserControlHost class
+        progId = "VBEAddIn.UserControlHost"
+
+        toolWindow = _VBE.Windows.CreateToolWindow(_AddIn, progId, toolWindowCaption, toolWindowGuid, userControlObject)
+        userControlHost = DirectCast(userControlObject, UserControlHost)
+
+        toolWindow.Visible = True
+
+        userControlHost.AddUserControl(toolWindowUserControl)
+
+        Return toolWindow
+
+    End Function
+
+    Private Sub _CommandBarButton1_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
+       ByRef CancelDefault As Boolean) Handles _CommandBarButton1.Click
+
+        Dim userControlObject As Object = Nothing
+        Dim userControlToolWindow1 As UserControlToolWindow1
+
+        Try
+
+            If _toolWindow1 Is Nothing Then
+
+                userControlToolWindow1 = New UserControlToolWindow1()
+
+                ' TODO: Change the GUID
+                _toolWindow1 = CreateToolWindow("My toolwindow 1", "{312945A4-6B7D-4F69-82CC-ACD0879011DB}", userControlToolWindow1)
+
+                userControlToolWindow1.Initialize(_VBE)
+
+            Else
+
+                _toolWindow1.Visible = True
+
+            End If
+
+        Catch ex As Exception
+
+            MessageBox.Show(ex.ToString)
+
+        End Try
+
     End Sub
 
 End Class

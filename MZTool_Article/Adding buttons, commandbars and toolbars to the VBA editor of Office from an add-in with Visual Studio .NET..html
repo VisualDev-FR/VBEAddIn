@@ -1,0 +1,537 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app221.us.archive.org';v.server_ms=32708;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=U25-Dms9" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://www.mztools.com/articles/2012/MZ2012015.aspx","20211024051839","https://web.archive.org/","web","/_static/",
+	      "1635052719");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=fantwOh2" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-15"/>
+<title>
+	HOWTO: Adding buttons, commandbars and toolbars to the VBA editor of Office from an add-in with Visual Studio .NET.
+</title><link rel="stylesheet" type="text/css" href="/web/20211024051839cs_/https://www.mztools.com/css/mztools.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/web/20211024051839im_/https://www.mztools.com/images/favicon.ico"/><link rel="apple-touch-icon" href="/web/20211024051839im_/https://www.mztools.com/images/apple-touch-icon.png"/><link rel="apple-touch-icon" sizes="57x57" href="/web/20211024051839im_/https://www.mztools.com/images/apple-touch-icon-57x57.png"/><link rel="apple-touch-icon" sizes="72x72" href="/web/20211024051839im_/https://www.mztools.com/images/apple-touch-icon-72x72.png"/><link rel="apple-touch-icon" sizes="76x76" href="/web/20211024051839im_/https://www.mztools.com/images/apple-touch-icon-76x76.png"/><link rel="apple-touch-icon" sizes="114x114" href="/web/20211024051839im_/https://www.mztools.com/images/apple-touch-icon-114x114.png"/><link rel="apple-touch-icon" sizes="120x120" href="/web/20211024051839im_/https://www.mztools.com/images/apple-touch-icon-120x120.png"/><link rel="apple-touch-icon" sizes="144x144" href="/web/20211024051839im_/https://www.mztools.com/images/apple-touch-icon-144x144.png"/><link rel="apple-touch-icon" sizes="152x152" href="/web/20211024051839im_/https://www.mztools.com/images/apple-touch-icon-152x152.png"/>
+
+   <script type="text/javascript" src="/web/20211024051839js_/https://www.mztools.com/scripts/mztools.js"></script>
+   <script type="text/javascript" src="/web/20211024051839js_/https://www.mztools.com/scripts/google-analytics.js"></script>
+ </head>
+<body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  /*min-width:800px !important;*/
+}
+</style>
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20211024051839/https%3A//www.mztools.com/articles/2012/MZ2012015.aspx"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="/_static/images/toolbar/wayback-toolbar-logo-100.png, /_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, /_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="https://www.mztools.com/articles/2012/MZ2012015.aspx" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20211024051839" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+		<div class="s" id="wm-nav-captures" style="flex:1;">
+	  	  <a class="t" href="/web/20211024051839*/https://www.mztools.com/articles/2012/MZ2012015.aspx" title="See a list of every capture for this URL">9 captures</a>
+	  <div class="r" title="Timespan for captures of this URL">07 Oct 2012 - 24 Oct 2021</div>
+	  </div>
+	<div class="k">
+	  <a href="" id="wm-graph-anchor">
+	    <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+	      <canvas id="wm-sparkline-canvas" width="675" height="27" border="0"></canvas>
+	    </div>
+	  </a>
+	</div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+	<tbody>
+	  <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+	  <tr class="m">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20180401164110/http://www.mztools.com:80/articles/2012/MZ2012015.aspx" title="01 Apr 2018"><strong>Apr</strong></a></td>
+	    <td class="c" id="displayMonthEl" title="You are here: 05:18:39 Oct 24, 2021">OCT</td>
+	    <td class="f" nowrap="nowrap">Nov</td>
+	  </tr>
+	  <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+	  <tr class="d">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20180401164110/http://www.mztools.com:80/articles/2012/MZ2012015.aspx" title="16:41:10 Apr 01, 2018"><img src="/_static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a></td>
+	    <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 05:18:39 Oct 24, 2021">24</td>
+	    <td class="f" nowrap="nowrap"><img src="/_static/images/toolbar/wm_tb_nxt_off.png" alt="Next capture" width="14" height="16" border="0" /></td>
+	  </tr>
+	  <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+	  <tr class="y">
+	    <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20180401164110/http://www.mztools.com:80/articles/2012/MZ2012015.aspx" title="01 Apr 2018"><strong>2018</strong></a></td>
+	    <td class="c" id="displayYearEl" title="You are here: 05:18:39 Oct 24, 2021">2021</td>
+	    <td class="f" nowrap="nowrap">2022</td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+        	<span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#"
+	     title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+	</span>
+        	<a class="xxs" href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+	<a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20211024051839/http://web.archive.org/screenshot/https://www.mztools.com/articles/2012/MZ2012015.aspx"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+	<a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20211024051839/https://www.mztools.com/articles/2012/MZ2012015.aspx" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+	<a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20211024051839/https://www.mztools.com/articles/2012/MZ2012015.aspx" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+	<a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+                    <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/commoncrawl)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/commoncrawl" target="_new"><span class="wm-title">Common Crawl</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Web crawl data from Common Crawl.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20211024051839/https://www.mztools.com/articles/2012/MZ2012015.aspx</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(675,27,25,2,"web","https://www.mztools.com/articles/2012/MZ2012015.aspx","20211024051839",1996,"/_static/",["/_static/css/banner-styles.css?v=fantwOh2","/_static/css/iconochive.css?v=qtvMKcIJ"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+   <div style="width: 1000px; margin-left:auto;margin-right:auto; background-color: #FFFFFF; padding: 6px; border: 1px; border-style: solid; border-color: #A0A0A0;">
+      <table class="non_printable" cellspacing="0" cellpadding="0" width="100%" border="0">
+         <tr>
+            <td style="line-height: 1px; width: 10px"><img height="10" width="10" alt="" src="/web/20211024051839im_/https://www.mztools.com/images/borders/top_left_dark_blue.png"/></td>
+            <!-- We need to use width: 980px rather than width: 100% to work in IE 8.0 -->
+            <td style="line-height: 1px; width: 980px; background-color: #04223A" colspan="3"></td>
+            <td style="line-height: 1px; width: 10px"><img height="10" width="10" alt="" src="/web/20211024051839im_/https://www.mztools.com/images/borders/top_right_dark_blue.png"/></td>
+         </tr>
+         <tr>
+            <td colspan="5" style="background-color: #04223A; vertical-align: bottom; text-align: center"><a href="https://web.archive.org/web/20211024051839/http://www.mztools.com/"><img src="/web/20211024051839im_/https://www.mztools.com/images/mztools.png" style="border-width: 0" width="250" height="50" alt="Logo"/></a></td>
+         </tr>
+         <tr>
+            <td style="line-height: 1px; width: 10px"><img src="/web/20211024051839im_/https://www.mztools.com/images/borders/bottom_left_dark_blue.png" height="10" width="10" alt=""/></td>
+            <td style="line-height: 1px; width: 100%; background-color: #04223A" colspan="3"></td>
+            <td style="line-height: 1px; width: 10px"><img src="/web/20211024051839im_/https://www.mztools.com/images/borders/bottom_right_dark_blue.png" height="10" width="10" alt=""/></td>
+         </tr>
+      </table>
+      <table class="table_central" cellspacing="0" cellpadding="0" width="100%" border="0">
+         <tr>
+            <td id="Content" class="td_content">
+               <div>
+                  
+
+<table cellspacing="0" cellpadding="0" class="table_header1"><tr><td class="td_header1_left" width="10px"></td><td class="td_header1_center"><b>HOWTO: Adding buttons, commandbars and toolbars to the VBA editor of Office from an add-in with Visual Studio .NET.</b></td><td class="td_header1_right" width="10px"></td></tr></table><br/>
+<table border="0">
+	<tr>
+		<td><b>Author</b>: </td>
+		<td>Carlos J. Quintero (Microsoft MVP)</td>
+		<td class="td_article_header"><b>Applies to</b>:</td>
+		<td>Microsoft Office 64-bit</td>
+	</tr>
+	<tr>
+		<td><b>Date</b>:</td>
+		<td>September 2012</td>
+		<td>&nbsp;</td>
+		<td>Microsoft Office 32-bit</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+
+<span class="article_section">Introduction</span>
+   <p>This article explains how to add buttons, toolbars, commandbar popups, etc. to an 
+       add-in for the VBA editor of Office using Visual Studio .NET and the .NET 
+       Framework.</p>
+<span class="article_section">More information</span>
+<p>Create an add-in for the VBA editor of Microsoft Office as explained in the 
+    article <a href="MZ2012013.aspx">HOWTO: Create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a> 
+    and use this code in the Connect.vb class.</p>
+    <p>The add-in adds the following:</p>
+    <ul>
+        <li>A button on the Standard toolbar.</li>
+        <li>A button on the context menu of a code window.</li>
+        <li>A button on the Tools menu.</li>
+        <li>A toolbar with a button.</li>
+        <li>A submenu with a button under the Tools menu.</li>
+        <li>A main menu with a button.</li>
+   </ul>
+
+<table width="100%" style="border-bottom-style:solid; border-bottom-color:Blue; border-bottom-width:1px"><tr><td>Language: VB.NET</td><td style="text-align:right"><span style="color:Blue; cursor:pointer" onclick="CopyToClipboard(document.getElementById('Code1'));">&nbsp;&nbsp;&nbsp;<img alt="Copy Code" style="border-style:none" src="/web/20211024051839im_/https://www.mztools.com/images/other/copy_code.png"/>&nbsp;Copy Code (IE only)</span></td></tr></table>
+
+<pre class="article_source_code" id="Code1">
+Imports MyCompany.Interop
+Imports MyCompany.Interop.Extensibility
+Imports Microsoft.Office.Core
+Imports System.Windows.Forms
+Imports System.Runtime.InteropServices
+
+&lt;ComVisible(True), Guid(PUT_NEW_GUID_HERE), ProgId("MyVBAAddin.Connect")&gt; _
+Public Class Connect
+   Implements Extensibility.IDTExtensibility2
+
+   Private _VBE As VBAExtensibility.VBE
+   Private _AddIn As VBAExtensibility.AddIn
+
+   ' Buttons created by the add-in
+   Private WithEvents _myStandardCommandBarButton As CommandBarButton
+   Private WithEvents _myToolsCommandBarButton As CommandBarButton
+   Private WithEvents _myCodeWindowCommandBarButton As CommandBarButton
+   Private WithEvents _myToolBarButton As CommandBarButton
+   Private WithEvents _myCommandBarPopup1Button As CommandBarButton
+   Private WithEvents _myCommandBarPopup2Button As CommandBarButton
+
+   ' CommandBars created by the add-in
+   Private _myToolbar As CommandBar
+   Private _myCommandBarPopup1 As CommandBarPopup
+   Private _myCommandBarPopup2 As CommandBarPopup
+
+   Private Sub OnConnection(Application As Object, ConnectMode As Extensibility.ext_ConnectMode, _
+      AddInInst As Object, ByRef custom As System.Array) Implements IDTExtensibility2.OnConnection
+
+      Try
+
+         _VBE = DirectCast(Application, VBAExtensibility.VBE)
+         _AddIn = DirectCast(AddInInst, VBAExtensibility.AddIn)
+
+         Select Case ConnectMode
+
+            Case Extensibility.ext_ConnectMode.ext_cm_Startup
+               ' OnStartupComplete will be called
+
+            Case Extensibility.ext_ConnectMode.ext_cm_AfterStartup
+               InitializeAddIn()
+
+         End Select
+
+      Catch ex As Exception
+
+         MessageBox.Show(ex.ToString())
+
+      End Try
+
+   End Sub
+
+   Private Sub OnDisconnection(RemoveMode As Extensibility.ext_DisconnectMode, _
+      ByRef custom As System.Array) Implements IDTExtensibility2.OnDisconnection
+
+      Try
+
+         Select Case RemoveMode
+
+            Case ext_DisconnectMode.ext_dm_HostShutdown, ext_DisconnectMode.ext_dm_UserClosed
+
+               ' Delete buttons on built-in commandbars
+               If Not (_myStandardCommandBarButton Is Nothing) Then
+                  _myStandardCommandBarButton.Delete()
+               End If
+
+               If Not (_myCodeWindowCommandBarButton Is Nothing) Then
+                  _myCodeWindowCommandBarButton.Delete()
+               End If
+
+               If Not (_myToolsCommandBarButton Is Nothing) Then
+                  _myToolsCommandBarButton.Delete()
+               End If
+
+               ' Disconnect event handlers
+               _myToolBarButton = Nothing
+               _myCommandBarPopup1Button = Nothing
+               _myCommandBarPopup2Button = Nothing
+
+               ' Delete commandbars created by the add-in
+               If Not (_myToolbar Is Nothing) Then
+                  _myToolbar.Delete()
+               End If
+
+               If Not (_myCommandBarPopup1 Is Nothing) Then
+                  _myCommandBarPopup1.Delete()
+               End If
+
+               If Not (_myCommandBarPopup2 Is Nothing) Then
+                  _myCommandBarPopup2.Delete()
+               End If
+
+         End Select
+
+      Catch e As System.Exception
+         System.Windows.Forms.MessageBox.Show(e.ToString)
+      End Try
+   End Sub
+
+   Private Sub OnStartupComplete(ByRef custom As System.Array) _
+      Implements IDTExtensibility2.OnStartupComplete
+
+      InitializeAddIn()
+
+   End Sub
+
+   Private Sub OnAddInsUpdate(ByRef custom As System.Array) _
+      Implements IDTExtensibility2.OnAddInsUpdate
+
+   End Sub
+
+   Private Sub OnBeginShutdown(ByRef custom As System.Array) _
+      Implements IDTExtensibility2.OnBeginShutdown
+
+   End Sub
+
+   Private Function AddCommandBarButton(ByVal commandBar As CommandBar) As CommandBarButton
+
+      Dim commandBarButton As CommandBarButton
+      Dim commandBarControl As CommandBarControl
+
+      commandBarControl = commandBar.Controls.Add(MsoControlType.msoControlButton)
+      commandBarButton = DirectCast(commandBarControl, CommandBarButton)
+
+      commandBarButton.Caption = "My button"
+      commandBarButton.FaceId = 59
+
+      Return commandBarButton
+
+   End Function
+
+   Private Sub InitializeAddIn()
+
+      ' Constants for names of built-in commandbars of the VBA editor
+      Const STANDARD_COMMANDBAR_NAME As String = "Standard"
+      Const MENUBAR_COMMANDBAR_NAME As String = "Menu Bar"
+      Const TOOLS_COMMANDBAR_NAME As String = "Tools"
+      Const CODE_WINDOW_COMMANDBAR_NAME As String = "Code Window"
+
+      ' Constants for names of commandbars created by the add-in
+      Const MY_COMMANDBAR_POPUP1_NAME As String = "MyTemporaryCommandBarPopup1"
+      Const MY_COMMANDBAR_POPUP2_NAME As String = "MyTemporaryCommandBarPopup2"
+
+      ' Constants for captions of commandbars created by the add-in
+      Const MY_COMMANDBAR_POPUP1_CAPTION As String = "My sub menu"
+      Const MY_COMMANDBAR_POPUP2_CAPTION As String = "My main menu"
+      Const MY_TOOLBAR_CAPTION As String = &quot;My toolbar"
+
+      ' Built-in commandbars of the VBA editor
+      Dim standardCommandBar As CommandBar
+      Dim menuCommandBar As CommandBar
+      Dim toolsCommandBar As CommandBar
+      Dim codeCommandBar As CommandBar
+
+      ' Other variables
+      Dim toolsCommandBarControl As CommandBarControl
+      Dim position As Integer
+
+      Try
+
+         ' Retrieve some built-in commandbars
+         standardCommandBar = _VBE.CommandBars.Item(STANDARD_COMMANDBAR_NAME)
+         menuCommandBar = _VBE.CommandBars.Item(MENUBAR_COMMANDBAR_NAME)
+         toolsCommandBar = _VBE.CommandBars.Item(TOOLS_COMMANDBAR_NAME)
+         codeCommandBar = _VBE.CommandBars.Item(CODE_WINDOW_COMMANDBAR_NAME)
+
+         ' Add a button to the built-in "Standard" toolbar
+         _myStandardCommandBarButton = AddCommandBarButton(standardCommandBar)
+
+         ' Add a button to the built-in "Tools" menu
+         _myToolsCommandBarButton = AddCommandBarButton(toolsCommandBar)
+
+         ' Add a button to the built-in "Code Window" context menu
+         _myCodeWindowCommandBarButton = AddCommandBarButton(codeCommandBar)
+
+         ' ------------------------------------------------------------------------------------
+         ' New toolbar
+         ' ------------------------------------------------------------------------------------
+
+         ' Add a new toolbar 
+         _myToolbar = _VBE.CommandBars.Add(MY_TOOLBAR_CAPTION, MsoBarPosition.msoBarTop, System.Type.Missing, True)
+
+         ' Add a new button on that toolbar
+         _myToolBarButton = AddCommandBarButton(_myToolbar)
+
+         ' Make visible the toolbar
+         _myToolbar.Visible = True
+
+         ' ------------------------------------------------------------------------------------
+         ' New submenu under the "Tools" menu
+         ' ------------------------------------------------------------------------------------
+
+         ' Add a new commandbar popup 
+         _myCommandBarPopup1 = DirectCast(toolsCommandBar.Controls.Add( _
+            MsoControlType.msoControlPopup, System.Type.Missing, System.Type.Missing, _
+            toolsCommandBar.Controls.Count + 1, True), CommandBarPopup)
+
+         ' Change some commandbar popup properties
+         _myCommandBarPopup1.CommandBar.Name = MY_COMMANDBAR_POPUP1_NAME
+         _myCommandBarPopup1.Caption = MY_COMMANDBAR_POPUP1_CAPTION
+
+         ' Add a new button on that commandbar popup
+         _myCommandBarPopup1Button = AddCommandBarButton(_myCommandBarPopup1.CommandBar)
+
+         ' Make visible the commandbar popup
+         _myCommandBarPopup1.Visible = True
+
+         ' ------------------------------------------------------------------------------------
+         ' New main menu
+         ' ------------------------------------------------------------------------------------
+
+         ' Calculate the position of a new commandbar popup to the right of the "Tools" menu
+         toolsCommandBarControl = DirectCast(toolsCommandBar.Parent, CommandBarControl)
+         position = toolsCommandBarControl.Index + 1
+
+         ' Add a new commandbar popup 
+         _myCommandBarPopup2 = DirectCast(menuCommandBar.Controls.Add( _
+            MsoControlType.msoControlPopup, System.Type.Missing, System.Type.Missing, _
+            position, True), CommandBarPopup)
+
+         ' Change some commandbar popup properties
+         _myCommandBarPopup2.CommandBar.Name = MY_COMMANDBAR_POPUP2_NAME
+         _myCommandBarPopup2.Caption = MY_COMMANDBAR_POPUP2_CAPTION
+
+         ' Add a new button on that commandbar popup
+         _myCommandBarPopup2Button = AddCommandBarButton(_myCommandBarPopup2.CommandBar)
+
+         ' Make visible the commandbar popup
+         _myCommandBarPopup2.Visible = True
+
+      Catch e As System.Exception
+         System.Windows.Forms.MessageBox.Show(e.ToString)
+      End Try
+
+   End Sub
+
+   Private Sub _myToolBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, _
+      ByRef CancelDefault As Boolean) Handles _myToolBarButton.Click
+
+      MessageBox.Show("Clicked " &amp; Ctrl.Caption)
+
+   End Sub
+
+   Private Sub _myToolsCommandBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, _
+      ByRef CancelDefault As Boolean) Handles _myToolsCommandBarButton.Click
+
+      MessageBox.Show("Clicked " &amp; Ctrl.Caption)
+
+   End Sub
+
+   Private Sub _myStandardCommandBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, _
+      ByRef CancelDefault As Boolean) Handles _myStandardCommandBarButton.Click
+
+      MessageBox.Show("Clicked " &amp; Ctrl.Caption)
+
+   End Sub
+
+   Private Sub _myCodeWindowCommandBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, _
+      ByRef CancelDefault As Boolean) Handles _myCodeWindowCommandBarButton.Click
+
+      MessageBox.Show("Clicked " &amp; Ctrl.Caption)
+
+   End Sub
+
+   Private Sub _myCommandBarPopup1Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, _
+      ByRef CancelDefault As Boolean) Handles _myCommandBarPopup1Button.Click
+
+      MessageBox.Show("Clicked " &amp; Ctrl.Caption)
+
+   End Sub
+
+   Private Sub _myCommandBarPopup2Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, _
+      ByRef CancelDefault As Boolean) Handles _myCommandBarPopup2Button.Click
+
+      MessageBox.Show("Clicked " &amp; Ctrl.Caption)
+
+   End Sub
+
+End Class
+</pre>
+
+<p class="article_section">Related articles</p>
+<ul>
+   <li><a href="MZ2012013.aspx">HOWTO: Create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a></li>
+   <li><a href="MZ2012016.aspx">HOWTO: Create a button with a custom picture for the VBA editor of Office from an add-in with Visual Studio .NET.</a></li>
+   <li><a href="MZ2012014.aspx">HOWTO: Debug an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a></li>
+   <li><a href="MZ2012011.aspx">HOWTO: Generate Interop assemblies to create an add-in for the VBA editor (32-bit or 64-bit) of Office with Visual Studio .NET</a></li>
+   <li><a href="MZ2012020.aspx">BUG: CommandBar.Name property localized in VBA editor of Office</a></li>
+</ul>
+
+
+               </div>
+            </td>
+         </tr>
+      </table>
+
+      <table cellspacing="0" cellpadding="0" class="table_footer"><tr><td class="td_footer_left" width="10px"></td><td class="td_footer_center">Copyright © 2021 MZTools Software. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;<a class="a_white_link" href="/web/20211024051839/https://www.mztools.com/legal_notice.aspx">Legal Notice</a></td><td class="td_footer_right" width="10px"></td></tr></table>
+
+   </div>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 05:18:39 Oct 24, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:35:01 Oct 08, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 32648.484
+  exclusion.robots: 0.35
+  exclusion.robots.policy: 0.34
+  RedisCDXSource: 2.327
+  esindex: 0.017
+  LoadShardBlock: 32624.09 (3)
+  PetaboxLoader3.datanode: 32625.116 (5)
+  CDXLines.iter: 18.191 (3)
+  load_resource: 50.176
+  PetaboxLoader3.resolve: 22.574
+-->

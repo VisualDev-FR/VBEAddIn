@@ -1,37 +1,18 @@
-VERSION 5.00
-Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} OLF_CHECK_HISTO 
-   Caption         =   "Histo checker"
-   ClientHeight    =   7245
-   ClientLeft      =   45
-   ClientTop       =   390
-   ClientWidth     =   5940
-   OleObjectBlob   =   "OLF_CHECK_HISTO.frx":0000
-   StartUpPosition =   1  'CenterOwner
-End
-Attribute VB_Name = "OLF_CHECK_HISTO"
-Attribute VB_GlobalNameSpace = False
-Attribute VB_Creatable = False
-Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
 Option Explicit
 
 Private m_anchorsDico As Dictionary
 
-Private Sub btn_refresh_Click()
+Private Sub UserForm_KeyUp(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
     
-    Application.EnableEvents = False
+    Debug.Print KeyCode
     
-    Dim activevbProj As String, activeVbComp As String
-    
-    activevbProj = vbProjList.Text
-    activeVbComp = vbCompList.Text
-    
-    Call reloadUSF
-
-    vbProjList.Text = activevbProj
-    
-    Application.EnableEvents = True
-    vbCompList.Text = activeVbComp
+'    Select Case KeyCode
+'        Case 96: Call btn_begin_Click   '0
+'        Case 97: Call btn_exit_Click    '1
+'        Case 98: Call btn_End_Click     '2
+'        Case 99: Call btn_error_Click   '3
+'        Case 100: Call btn_fatal_Click  '4
+'    End Select
     
 End Sub
 
@@ -57,7 +38,7 @@ Private Sub refreshVbProjList()
     Next
     
     Me.vbProjList.ListIndex = 0
-
+    
 End Sub
 
 Private Sub refreshVbCompList()
@@ -98,22 +79,11 @@ Private Sub refreshView()
 
 End Sub
 
-Private Sub vbCompList_Change()
-    Call refreshView
-End Sub
-
-Private Sub vbProjList_Change()
-    Call refreshVbCompList
-End Sub
-
-Public Function getAnchorsDico() As Dictionary
+Private Function getAnchorsDico() As Dictionary
     
     Dim appAnchors As Dictionary
     Set appAnchors = New Dictionary
-    
-    Dim fso As New FileSystemObject, oStream As TextStream
-    Set oStream = fso.OpenTextFile("C:\Users\a872364\Desktop\anchorsReport.txt", ForWriting, True)
-    
+
     Dim vbp As Variant, vbProj As VBProject
     For Each vbp In Application.VBE.VBProjects
         
@@ -130,7 +100,7 @@ Public Function getAnchorsDico() As Dictionary
                 Set vbComp = vbc
                 
                 Dim vbCompDico As Dictionary
-                Set vbCompDico = getvbCompDico(vbComp, vbProj.Name & ":" & vbComp.Name & ":", oStream)
+                Set vbCompDico = getvbCompDico(vbComp, vbProj.Name & ":" & vbComp.Name & ":")
                 
                 If vbCompDico.count > 0 And Not vbProjDico.Exists(vbComp.Name) Then vbProjDico.Add Key:=vbComp.Name, Item:=vbCompDico
                     
@@ -146,7 +116,7 @@ Public Function getAnchorsDico() As Dictionary
 
 End Function
 
-Private Function getvbCompDico(vbComp As VBComponent, parent As String, Optional oStream As TextStream) As Dictionary
+Private Function getvbCompDico(vbComp As VBComponent, parent As String) As Dictionary
 
     Dim vbCompDico As Dictionary
     Set vbCompDico = New Dictionary
@@ -178,8 +148,6 @@ Private Function getvbCompDico(vbComp As VBComponent, parent As String, Optional
                     anchorDico.Add Key:="curLine", Item:=Trim(curLine)
 
                     If Not vbCompDico.Exists(i) Then vbCompDico.Add Key:=i, Item:=anchorDico
-                    
-                    If Not oStream Is Nothing Then oStream.WriteLine parent & i
 
                 End If
             
@@ -192,31 +160,6 @@ Private Function getvbCompDico(vbComp As VBComponent, parent As String, Optional
     Set getvbCompDico = vbCompDico
 
 End Function
-
-Private Function isEndLine(strLine As String) As Boolean
-
-    Dim isEnd As Boolean
-
-    isEnd = InStr(1, strLine, "Exit Sub", vbTextCompare) > 0
-    isEnd = isEnd Or InStr(1, strLine, "Exit Function", vbTextCompare) > 0
-    isEnd = isEnd Or InStr(1, strLine, "Exit Property", vbTextCompare) > 0
-    isEnd = isEnd Or InStr(1, strLine, "End Sub", vbTextCompare) > 0
-    isEnd = isEnd Or InStr(1, strLine, "End Function", vbTextCompare) > 0
-    isEnd = isEnd Or InStr(1, strLine, "End Property", vbTextCompare) > 0
-    
-    isEndLine = isEnd
-
-End Function
-
-Sub testPane()
-
-    With ThisWorkbook.VBProject.VBComponents.Item(20)
-    
-        .CodeModule.CodePane.TopLine = 584
-    
-    End With
-
-End Sub
 
 Private Function getSelectedVBComp() As VBComponent
 
@@ -241,6 +184,43 @@ Private Function getSelectedVBComp() As VBComponent
 
 End Function
 
+Private Function getCursorLine() As Long
+
+    Dim sRow As Long, sCol As Long, eRow As Long, eCol As Long
+    Call Application.VBE.ActiveCodePane.GetSelection(sRow, sCol, eRow, eCol)
+    
+    getCursorLine = sRow
+    
+End Function
+
+Private Function isEndLine(strLine As String) As Boolean
+
+    Dim isEnd As Boolean, exitPos As Long, commentPos As Long
+    
+    commentPos = InStr(1, strLine, "'", vbTextCompare)
+
+    exitPos = InStr(1, strLine, "Exit Sub", vbTextCompare)
+    isEnd = isEnd Or (exitPos > 0 And (commentPos <= 0 Or commentPos > exitPos)) 'Permet de filtrer les lignes de commentaire
+
+    exitPos = InStr(1, strLine, "Exit Function", vbTextCompare)
+    isEnd = isEnd Or (exitPos > 0 And (commentPos <= 0 Or commentPos > exitPos))
+    
+    exitPos = InStr(1, strLine, "Exit Property", vbTextCompare)
+    isEnd = isEnd Or (exitPos > 0 And (commentPos <= 0 Or commentPos > exitPos))
+    
+    exitPos = InStr(1, strLine, "End Sub", vbTextCompare)
+    isEnd = isEnd Or (exitPos > 0 And (commentPos <= 0 Or commentPos > exitPos))
+    
+    exitPos = InStr(1, strLine, "End Function", vbTextCompare)
+    isEnd = isEnd Or (exitPos > 0 And (commentPos <= 0 Or commentPos > exitPos))
+    
+    exitPos = InStr(1, strLine, "End Property", vbTextCompare)
+    isEnd = isEnd Or (exitPos > 0 And (commentPos <= 0 Or commentPos > exitPos))
+
+    isEndLine = isEnd
+
+End Function
+
 Private Sub view_Click()
     
     Dim strLine As String
@@ -254,7 +234,83 @@ Private Sub view_Click()
     activeLine = Val(strLine)
     
     Call activeVbComp.CodeModule.CodePane.SetSelection(activeLine, 1, activeLine + 1, 1)
-    activeVbComp.CodeModule.CodePane.TopLine = IIf(activeLine > 15, activeLine - 10, activeLine)
+    activeVbComp.CodeModule.CodePane.TopLine = WorksheetFunction.Max(activeLine - activeVbComp.CodeModule.CodePane.CountOfVisibleLines + 10, 1)
     activeVbComp.CodeModule.CodePane.Show
+    
+    Me.ActiveControl.SetFocus
 
+End Sub
+
+Private Sub btn_refresh_Click()
+    
+    Application.EnableEvents = False
+    
+    Dim activevbProj As String, activeVbComp As String
+    
+    activevbProj = vbProjList.Text
+    activeVbComp = vbCompList.Text
+    
+    Call reloadUSF
+
+    vbProjList.Text = activevbProj
+    
+    Application.EnableEvents = True
+    vbCompList.Text = activeVbComp
+    
+End Sub
+
+Private Sub btn_begin_Click()
+
+    Dim activeLine As Long
+    activeLine = getCursorLine()
+    
+    Dim activeProcName As String
+    activeProcName = Application.VBE.ActiveCodePane.CodeModule.ProcOfLine(activeLine, vbext_pk_Proc)
+
+    Call Application.VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call OOXOOXOOXOOXOOXOO(MODULE_NAME, """ & activeProcName & """)")
+    
+End Sub
+
+Private Sub btn_End_Click()
+
+    Dim activeLine As Long
+    activeLine = getCursorLine()
+
+    Call Application.VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call OOXOOXOOXOOXOOXOO(END_HISTO)")
+
+End Sub
+
+Private Sub btn_error_Click()
+
+    Dim activeLine As Long
+    activeLine = getCursorLine()
+
+    Call Application.VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call OOXOOXOOXOOXOOXOO(ERROR_HISTO)")
+
+End Sub
+
+Private Sub btn_exit_Click()
+    
+    Dim activeLine As Long
+    activeLine = getCursorLine()
+
+    Call Application.VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call OOXOOXOOXOOXOOXOO(EXIT_HISTO)")
+    
+End Sub
+
+Private Sub btn_fatal_Click()
+    
+    Dim activeLine As Long
+    activeLine = getCursorLine()
+
+    Call Application.VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call FatalError(True, True)")
+    
+End Sub
+
+Private Sub vbCompList_Change()
+    Call refreshView
+End Sub
+
+Private Sub vbProjList_Change()
+    Call refreshVbCompList
 End Sub

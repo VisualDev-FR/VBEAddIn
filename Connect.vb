@@ -3,30 +3,68 @@ Imports Extensibility
 Imports Microsoft.Vbe.Interop
 Imports Microsoft.Office.Core
 
-Imports System.Runtime.InteropServices
-Imports System.Drawing
-
 Public Class Connect
     Implements Extensibility.IDTExtensibility2
 
     Private _VBE As VBE
     Private _AddIn As AddIn
 
-    Private WithEvents _CommandBarButton1 As CommandBarButton
-    Private _toolWindow1 As Window
+    ' Constants for names of built-in commandbars of the VBA editor
+    Private Const STANDARD_COMMANDBAR_NAME As String = "Standard"
+    Private Const MENUBAR_COMMANDBAR_NAME As String = "Barre de menus"
+    Private Const TOOLS_COMMANDBAR_NAME As String = "Tools"
+    Private Const CODE_WINDOW_COMMANDBAR_NAME As String = "Code Window"
 
-    ' Buttons created by the add-in
-    Private WithEvents _myStandardCommandBarButton As CommandBarButton
-    Private WithEvents _myToolsCommandBarButton As CommandBarButton
-    Private WithEvents _myCodeWindowCommandBarButton As CommandBarButton
-    Private WithEvents _myToolBarButton As CommandBarButton
-    Private WithEvents _myCommandBarPopup1Button As CommandBarButton
-    Private WithEvents _myCommandBarPopup2Button As CommandBarButton
+    ' Constants for names of commandbars created by the add-in
+    Const ETITD_MENU_NAME As String = "ETITD"
+    Const HISTO_CHECKER_NAME As String = "Check Histo"
 
-    ' CommandBars created by the add-in
-    Private _myToolbar As CommandBar
-    Private _myCommandBarPopup1 As CommandBarPopup
-    Private _myCommandBarPopup2 As CommandBarPopup
+    'Tool window
+    Private m_histoCheckerWindow As Window '_toolWindow1
+
+    'ETITD mainMenu
+    Private m_etid_mainmenu As CommandBarPopup
+    Private WithEvents m_exportSourceCode_Button As CommandBarButton
+    Private WithEvents m_importSourceCode_Button As CommandBarButton
+    Private WithEvents m_displayHistoChecker_Button As CommandBarButton
+
+    'Histo anchor sub menu
+    Private m_insert_histo_anchor_subMenu As CommandBarPopup
+    Private WithEvents m_begin_subMenuBtn As CommandBarButton
+    Private WithEvents m_end_subMenuBtn As CommandBarButton
+    Private WithEvents m_exit_subMenuBtn As CommandBarButton
+    Private WithEvents m_error_subMenuBtn As CommandBarButton
+    Private WithEvents m_fatal_subMenuBtn As CommandBarButton
+
+    'Histo checker ToolBar
+    Private m_histo_checker_toolbar As CommandBar
+    Private WithEvents m_begin_toolbarBtn As CommandBarButton
+    Private WithEvents m_end_toolbarBtn As CommandBarButton
+    Private WithEvents m_exit_toolbarBtn As CommandBarButton
+    Private WithEvents m_error_toolbarBtn As CommandBarButton
+    Private WithEvents m_fatal_toolbarBtn As CommandBarButton
+
+    'Custom proc's
+    Private m_Assistant As HistoAssistant
+
+    'm_etid_mainmenu
+    'm_insert_histo_anchor_subMenu
+    'm_histo_checker_toolbar
+
+    'm_exportSourceCode_Button
+    'm_importSourceCode_Button
+    'm_displayHistoChecker_Button
+
+    'm_begin_subMenuBtn
+    'm_end_subMenuBtn
+    'm_exit_subMenuBtn
+    'm_error_subMenuBtn
+    'm_fatal_subMenuBtn
+    'm_begin_toolbarBtn
+    'm_end_toolbarBtn
+    'm_exit_toolbarBtn
+    'm_error_toolbarBtn
+    'm_fatal_toolbarBtn
 
     Private Sub OnConnection(Application As Object, ConnectMode As Extensibility.ext_ConnectMode,
        AddInInst As Object, ByRef custom As System.Array) Implements IDTExtensibility2.OnConnection
@@ -46,49 +84,30 @@ Public Class Connect
     Private Sub OnDisconnection(RemoveMode As Extensibility.ext_DisconnectMode,
        ByRef custom As System.Array) Implements IDTExtensibility2.OnDisconnection
 
-        If Not _CommandBarButton1 Is Nothing Then
-
-            _CommandBarButton1.Delete()
-            _CommandBarButton1 = Nothing
-
-        End If
-
         Try
 
             Select Case RemoveMode
 
                 Case ext_DisconnectMode.ext_dm_HostShutdown, ext_DisconnectMode.ext_dm_UserClosed
 
-                    ' Delete buttons on built-in commandbars
-                    If Not (_myStandardCommandBarButton Is Nothing) Then
-                        _myStandardCommandBarButton.Delete()
-                    End If
+                    disconnect(m_exportSourceCode_Button)
+                    disconnect(m_importSourceCode_Button)
+                    disconnect(m_displayHistoChecker_Button)
 
-                    If Not (_myCodeWindowCommandBarButton Is Nothing) Then
-                        _myCodeWindowCommandBarButton.Delete()
-                    End If
+                    disconnect(m_begin_subMenuBtn)
+                    disconnect(m_end_subMenuBtn)
+                    disconnect(m_exit_subMenuBtn)
+                    disconnect(m_error_subMenuBtn)
+                    disconnect(m_fatal_subMenuBtn)
+                    disconnect(m_begin_toolbarBtn)
+                    disconnect(m_end_toolbarBtn)
+                    disconnect(m_exit_toolbarBtn)
+                    disconnect(m_error_toolbarBtn)
+                    disconnect(m_fatal_toolbarBtn)
 
-                    If Not (_myToolsCommandBarButton Is Nothing) Then
-                        _myToolsCommandBarButton.Delete()
-                    End If
-
-                    ' Disconnect event handlers
-                    _myToolBarButton = Nothing
-                    _myCommandBarPopup1Button = Nothing
-                    _myCommandBarPopup2Button = Nothing
-
-                    ' Delete commandbars created by the add-in
-                    If Not (_myToolbar Is Nothing) Then
-                        _myToolbar.Delete()
-                    End If
-
-                    If Not (_myCommandBarPopup1 Is Nothing) Then
-                        _myCommandBarPopup1.Delete()
-                    End If
-
-                    If Not (_myCommandBarPopup2 Is Nothing) Then
-                        _myCommandBarPopup2.Delete()
-                    End If
+                    disconnect(m_histo_checker_toolbar)
+                    disconnect(m_insert_histo_anchor_subMenu)
+                    disconnect(m_etid_mainmenu)
 
             End Select
 
@@ -96,6 +115,13 @@ Public Class Connect
             System.Windows.Forms.MessageBox.Show(e.ToString)
         End Try
 
+    End Sub
+
+    Private Sub disconnect(ByRef mObject As Object)
+        If Not (mObject Is Nothing) Then
+            mObject.Delete()
+        End If
+        mObject = Nothing
     End Sub
 
     Private Sub OnStartupComplete(ByRef custom As System.Array) _
@@ -113,47 +139,10 @@ Public Class Connect
 
     Private Sub InitializeAddIn()
 
-
-        Dim standardCommandBar As CommandBar
-        Dim commandBarControl As CommandBarControl
-
-        Try
-
-            'standardCommandBar = _VBE.CommandBars.Add("myBar", MsoBarPosition.msoBarTop, Temporary:=True)
-            standardCommandBar = _VBE.CommandBars.Item("Standard")
-
-            commandBarControl = standardCommandBar.Controls.Add(MsoControlType.msoControlButton)
-            _CommandBarButton1 = DirectCast(commandBarControl, CommandBarButton)
-            _CommandBarButton1.Caption = "Toolwindow 1"
-            _CommandBarButton1.FaceId = 59
-            _CommandBarButton1.Style = MsoButtonStyle.msoButtonIconAndCaption
-            _CommandBarButton1.BeginGroup = True
-
-
-        Catch ex As Exception
-
-            MessageBox.Show(ex.ToString())
-
-        End Try
-
-        'TOOLBARS CREATION
-
-        ' Constants for names of built-in commandbars of the VBA editor
-        Const STANDARD_COMMANDBAR_NAME As String = "Standard"
-        Const MENUBAR_COMMANDBAR_NAME As String = "Barre de menus"
-        Const TOOLS_COMMANDBAR_NAME As String = "Tools"
-        Const CODE_WINDOW_COMMANDBAR_NAME As String = "Code Window"
-
-        ' Constants for names of commandbars created by the add-in
-        Const MY_COMMANDBAR_POPUP1_NAME As String = "MyTemporaryCommandBarPopup1"
-        Const MY_COMMANDBAR_POPUP2_NAME As String = "MyTemporaryCommandBarPopup2"
-
-        ' Constants for captions of commandbars created by the add-in
-        Const MY_COMMANDBAR_POPUP1_CAPTION As String = "My sub menu"
-        Const MY_COMMANDBAR_POPUP2_CAPTION As String = "My main menu"
-        Const MY_TOOLBAR_CAPTION As String = "My toolbar"
+        m_Assistant = New HistoAssistant(_VBE)
 
         ' Built-in commandbars of the VBA editor
+        Dim standardCommandBar As CommandBar
         Dim menuCommandBar As CommandBar
         Dim toolsCommandBar As CommandBar
         Dim codeCommandBar As CommandBar
@@ -164,75 +153,76 @@ Public Class Connect
 
         Try
 
-            ' Retrieve some built-in commandbars
+            'Retrieve some built-in commandbars
             standardCommandBar = _VBE.CommandBars.Item(STANDARD_COMMANDBAR_NAME)
             menuCommandBar = _VBE.CommandBars.Item(MENUBAR_COMMANDBAR_NAME)
             toolsCommandBar = _VBE.CommandBars.Item(TOOLS_COMMANDBAR_NAME)
             codeCommandBar = _VBE.CommandBars.Item(CODE_WINDOW_COMMANDBAR_NAME)
 
-            ' Add a button to the built-in "Standard" toolbar
-            _myStandardCommandBarButton = AddCommandBarButton(standardCommandBar)
-
-            ' Add a button to the built-in "Tools" menu
-            _myToolsCommandBarButton = AddCommandBarButton(toolsCommandBar)
-
-            ' Add a button to the built-in "Code Window" context menu
-            _myCodeWindowCommandBarButton = AddCommandBarButton(codeCommandBar)
-
             ' ------------------------------------------------------------------------------------
-            ' New toolbar
+            ' Create histoChecker toolbar
             ' ------------------------------------------------------------------------------------
 
-            ' Add a new toolbar 
-            _myToolbar = _VBE.CommandBars.Add(MY_TOOLBAR_CAPTION, MsoBarPosition.msoBarTop, System.Type.Missing, True)
+            m_histo_checker_toolbar = _VBE.CommandBars.Add(HISTO_CHECKER_NAME, MsoBarPosition.msoBarTop, System.Type.Missing, True)
+            m_histo_checker_toolbar.Visible = True
 
-            ' Add a new button on that toolbar
-            _myToolBarButton = AddCommandBarButton(_myToolbar)
+            m_begin_toolbarBtn = AddCommandBarButton(m_histo_checker_toolbar, "BEGIN")
+            m_begin_toolbarBtn.Caption = "BEGIN"
+            m_begin_toolbarBtn.Style = MsoButtonStyle.msoButtonCaption
 
-            ' Make visible the toolbar
-            _myToolbar.Visible = True
+            m_end_toolbarBtn = AddCommandBarButton(m_histo_checker_toolbar, "END")
+            m_end_toolbarBtn.Caption = "END"
+            m_end_toolbarBtn.Style = MsoButtonStyle.msoButtonCaption
 
-            ' ------------------------------------------------------------------------------------
-            ' New submenu under the "Tools" menu
-            ' ------------------------------------------------------------------------------------
+            m_exit_toolbarBtn = AddCommandBarButton(m_histo_checker_toolbar, "EXIT")
+            m_exit_toolbarBtn.Caption = "EXIT"
+            m_exit_toolbarBtn.Style = MsoButtonStyle.msoButtonCaption
 
-            ' Add a new commandbar popup 
-            _myCommandBarPopup1 = DirectCast(toolsCommandBar.Controls.Add(
-            MsoControlType.msoControlPopup, System.Type.Missing, System.Type.Missing,
-            toolsCommandBar.Controls.Count + 1, True), CommandBarPopup)
+            m_error_toolbarBtn = AddCommandBarButton(m_histo_checker_toolbar, "ERROR")
+            m_error_toolbarBtn.Caption = "ERROR"
+            m_error_toolbarBtn.Style = MsoButtonStyle.msoButtonCaption
 
-            ' Change some commandbar popup properties
-            _myCommandBarPopup1.CommandBar.Name = MY_COMMANDBAR_POPUP1_NAME
-            _myCommandBarPopup1.Caption = MY_COMMANDBAR_POPUP1_CAPTION
-
-            ' Add a new button on that commandbar popup
-            _myCommandBarPopup1Button = AddCommandBarButton(_myCommandBarPopup1.CommandBar)
-
-            ' Make visible the commandbar popup
-            _myCommandBarPopup1.Visible = True
+            m_fatal_toolbarBtn = AddCommandBarButton(m_histo_checker_toolbar, "FATAl")
+            m_fatal_toolbarBtn.Caption = "FATAL"
+            m_fatal_toolbarBtn.Style = MsoButtonStyle.msoButtonCaption
 
             ' ------------------------------------------------------------------------------------
-            ' New main menu
+            ' ETITD main menu
             ' ------------------------------------------------------------------------------------
 
-            ' Calculate the position of a new commandbar popup to the right of the "Tools" menu
-            toolsCommandBarControl = DirectCast(toolsCommandBar.Parent, CommandBarControl)
-            position = toolsCommandBarControl.Index + 1
+            toolsCommandBarControl = DirectCast(toolsCommandBar.Parent, CommandBarControl) 'Calculate the position of a new commandbar popup to the right of the "Tools" menu
+            position = 11 ' toolsCommandBarControl.Index + 1
 
-            ' Add a new commandbar popup 
-            _myCommandBarPopup2 = DirectCast(menuCommandBar.Controls.Add(
+            m_etid_mainmenu = DirectCast(menuCommandBar.Controls.Add(
             MsoControlType.msoControlPopup, System.Type.Missing, System.Type.Missing,
             position, True), CommandBarPopup)
 
-            ' Change some commandbar popup properties
-            _myCommandBarPopup2.CommandBar.Name = MY_COMMANDBAR_POPUP2_NAME
-            _myCommandBarPopup2.Caption = MY_COMMANDBAR_POPUP2_CAPTION
+            m_etid_mainmenu.CommandBar.Name = ETITD_MENU_NAME
+            m_etid_mainmenu.Caption = ETITD_MENU_NAME
+            m_etid_mainmenu.Visible = True
 
-            ' Add a new button on that commandbar popup
-            _myCommandBarPopup2Button = AddCommandBarButton(_myCommandBarPopup2.CommandBar)
+            m_exportSourceCode_Button = AddCommandBarButton(m_etid_mainmenu.CommandBar, "Export code")
+            m_importSourceCode_Button = AddCommandBarButton(m_etid_mainmenu.CommandBar, "Import code")
+            m_displayHistoChecker_Button = AddCommandBarButton(m_etid_mainmenu.CommandBar, "Histo checker")
 
-            ' Make visible the commandbar popup
-            _myCommandBarPopup2.Visible = True
+            ' ------------------------------------------------------------------------------------
+            ' New submenu under the "ETITD" menu
+            ' ------------------------------------------------------------------------------------
+
+            'TODO: recabler le sous-menu
+            m_insert_histo_anchor_subMenu = DirectCast(m_etid_mainmenu.CommandBar.Controls.Add(
+            MsoControlType.msoControlPopup, System.Type.Missing, System.Type.Missing, m_etid_mainmenu.CommandBar.Controls.Count + 1, True),
+            CommandBarPopup)
+
+            m_insert_histo_anchor_subMenu.CommandBar.Name = "Insert histo anchors"
+            m_insert_histo_anchor_subMenu.Caption = "Insert histo anchors"
+            m_insert_histo_anchor_subMenu.Visible = True
+
+            m_begin_subMenuBtn = AddCommandBarButton(m_insert_histo_anchor_subMenu.CommandBar, "BEGIN")
+            m_end_subMenuBtn = AddCommandBarButton(m_insert_histo_anchor_subMenu.CommandBar, "END")
+            m_exit_subMenuBtn = AddCommandBarButton(m_insert_histo_anchor_subMenu.CommandBar, "EXIT")
+            m_error_subMenuBtn = AddCommandBarButton(m_insert_histo_anchor_subMenu.CommandBar, "ERROR")
+            m_fatal_subMenuBtn = AddCommandBarButton(m_insert_histo_anchor_subMenu.CommandBar, "FATAL")
 
         Catch e As System.Exception
             System.Windows.Forms.MessageBox.Show(e.ToString)
@@ -241,49 +231,55 @@ Public Class Connect
 
     End Sub
 
-    Private Sub _myToolBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
-        ByRef CancelDefault As Boolean) Handles _myToolBarButton.Click
-
+    Private Sub m_exportSourceCode_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_exportSourceCode_Button.Click
         MessageBox.Show("Clicked " & Ctrl.Caption)
-
     End Sub
 
-    Private Sub _myToolsCommandBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
-       ByRef CancelDefault As Boolean) Handles _myToolsCommandBarButton.Click
-
+    Private Sub m_importSourceCode_Button_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_importSourceCode_Button.Click
         MessageBox.Show("Clicked " & Ctrl.Caption)
-
     End Sub
 
-    Private Sub _myStandardCommandBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
-       ByRef CancelDefault As Boolean) Handles _myStandardCommandBarButton.Click
-
-        MessageBox.Show("Clicked " & Ctrl.Caption)
-
+    Private Sub m_begin_subMenuBtn_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_begin_subMenuBtn.Click
+        m_Assistant.insert_BEGIN()
     End Sub
 
-    Private Sub _myCodeWindowCommandBarButton_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
-       ByRef CancelDefault As Boolean) Handles _myCodeWindowCommandBarButton.Click
-
-        MessageBox.Show("Clicked " & Ctrl.Caption)
-
+    Private Sub m_end_subMenuBtn_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_end_subMenuBtn.Click
+        m_Assistant.insert_END()
     End Sub
 
-    Private Sub _myCommandBarPopup1Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
-       ByRef CancelDefault As Boolean) Handles _myCommandBarPopup1Button.Click
-
-        MessageBox.Show("Clicked " & Ctrl.Caption)
-
+    Private Sub m_exit_subMenuBtn_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_exit_subMenuBtn.Click
+        m_Assistant.insert_EXIT()
     End Sub
 
-    Private Sub _myCommandBarPopup2Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
-       ByRef CancelDefault As Boolean) Handles _myCommandBarPopup2Button.Click
-
-        MessageBox.Show("Clicked " & Ctrl.Caption)
-
+    Private Sub m_error_subMenuBtn_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_error_subMenuBtn.Click
+        m_Assistant.insert_ERROR()
     End Sub
 
-    Private Function AddCommandBarButton(ByVal commandBar As CommandBar) As CommandBarButton
+    Private Sub m_fatal_subMenuBtn_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_fatal_subMenuBtn.Click
+        m_Assistant.insert_FATAL()
+    End Sub
+
+    Private Sub m_begin_toolbarBtn_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_begin_toolbarBtn.Click
+        m_Assistant.insert_BEGIN()
+    End Sub
+
+    Private Sub m_end_toolbarBtn_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_end_toolbarBtn.Click
+        m_Assistant.insert_END()
+    End Sub
+
+    Private Sub m_exit_toolbarBtn_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_exit_toolbarBtn.Click
+        m_Assistant.insert_EXIT()
+    End Sub
+
+    Private Sub m_error_toolbarBtn_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_error_toolbarBtn.Click
+        m_Assistant.insert_ERROR()
+    End Sub
+
+    Private Sub m_fatal_toolbarBtn_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_fatal_toolbarBtn.Click
+        m_Assistant.insert_FATAL()
+    End Sub
+
+    Private Function AddCommandBarButton(ByVal commandBar As CommandBar, ByRef buttonName As String) As CommandBarButton
 
         Dim commandBarButton As CommandBarButton
         Dim commandBarControl As CommandBarControl
@@ -291,8 +287,8 @@ Public Class Connect
         commandBarControl = commandBar.Controls.Add(MsoControlType.msoControlButton)
         commandBarButton = DirectCast(commandBarControl, CommandBarButton)
 
-        commandBarButton.Caption = "My button"
-        commandBarButton.FaceId = 59
+        commandBarButton.Caption = buttonName
+        'commandBarButton.FaceId = 59
 
         Return commandBarButton
 
@@ -320,36 +316,31 @@ Public Class Connect
 
     End Function
 
-    Private Sub _CommandBarButton1_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
-       ByRef CancelDefault As Boolean) Handles _CommandBarButton1.Click
+    Private Sub m_displayHistoChecker_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
+       ByRef CancelDefault As Boolean) Handles m_displayHistoChecker_Button.Click
 
         Dim userControlObject As Object = Nothing
         Dim userControlToolWindow1 As UserControlToolWindow1
 
         Try
 
-            If _toolWindow1 Is Nothing Then
+            If m_histoCheckerWindow Is Nothing Then
 
                 userControlToolWindow1 = New UserControlToolWindow1()
 
                 ' TODO: Change the GUID
-                _toolWindow1 = CreateToolWindow("My toolwindow 1", "{312945A4-6B7D-4F69-82CC-ACD0879011DB}", userControlToolWindow1)
+                m_histoCheckerWindow = CreateToolWindow("Histo checker", "{312945A4-6B7D-4F69-82CC-ACD0879011DB}", userControlToolWindow1)
 
                 userControlToolWindow1.Initialize(_VBE)
 
             Else
-
-                _toolWindow1.Visible = True
-
+                m_histoCheckerWindow.Visible = True
             End If
 
         Catch ex As Exception
-
             MessageBox.Show(ex.ToString)
-
         End Try
 
     End Sub
 
 End Class
-

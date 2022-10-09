@@ -1,0 +1,20 @@
+HCDC menu
+    - ExportSourceCode
+    - ImportSourceCode
+    - Display histo checker
+    - Insert histo  
+        - BEGIN
+        - END
+        - EXIT
+        - ERROR
+        - FATAL    
+    - TBD
+
+HCDC ToolBar
+    - BEGIN
+    - END
+    - EXIT
+    - ERROR
+    - FATAL
+
+Histo checker window

@@ -15,8 +15,7 @@ Public Class HistoAssistant
 
         If m_VBE.ActiveCodePane Is Nothing Then Exit Sub
 
-        Dim activeLine As Long
-        activeLine = getCursorLine()
+        Dim activeLine As Long = getCursorLine()
 
         Dim activeProcName As String
         activeProcName = m_VBE.ActiveCodePane.CodeModule.ProcOfLine(activeLine, vbext_ProcKind.vbext_pk_Proc)
@@ -29,10 +28,9 @@ Public Class HistoAssistant
 
         If m_VBE.ActiveCodePane Is Nothing Then Exit Sub
 
-        Dim activeLine As Long
-        activeLine = getCursorLine()
+        Dim activeLine As Long = getCursorLine()
 
-        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call OOXOOXOOXOOXOOXOO(END_HISTO)")
+        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, getCursorLineIndent(1) & "Call OOXOOXOOXOOXOOXOO(END_HISTO)")
 
     End Sub
 
@@ -40,20 +38,18 @@ Public Class HistoAssistant
 
         If m_VBE.ActiveCodePane Is Nothing Then Exit Sub
 
-        Dim activeLine As Long
-        activeLine = getCursorLine()
+        Dim activeLine As Long = getCursorLine()
 
-        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call OOXOOXOOXOOXOOXOO(EXIT_HISTO)")
+        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, getCursorLineIndent(1) & "Call OOXOOXOOXOOXOOXOO(EXIT_HISTO)")
 
     End Sub
     Public Sub insert_ERROR()
 
         If m_VBE.ActiveCodePane Is Nothing Then Exit Sub
 
-        Dim activeLine As Long
-        activeLine = getCursorLine()
+        Dim activeLine As Long = getCursorLine()
 
-        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call OOXOOXOOXOOXOOXOO(ERROR_HISTO)")
+        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, getCursorLineIndent(1) & "Call OOXOOXOOXOOXOOXOO(ERROR_HISTO)")
 
     End Sub
 
@@ -61,10 +57,9 @@ Public Class HistoAssistant
 
         If m_VBE.ActiveCodePane Is Nothing Then Exit Sub
 
-        Dim activeLine As Long
-        activeLine = getCursorLine()
+        Dim activeLine As Long = getCursorLine()
 
-        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, vbTab & "Call FatalError(True, True)")
+        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, getCursorLineIndent(1) & "Call FatalError(True, True)")
 
     End Sub
 
@@ -74,6 +69,22 @@ Public Class HistoAssistant
         m_VBE.ActiveCodePane.GetSelection(sRow, sCol, eRow, eCol)
 
         getCursorLine = sRow
+
+    End Function
+
+    Private Function getCursorLineIndent(Optional countToAdd As Integer = 0) As String
+
+        Dim activeLine As Long = getCursorLine()
+        Dim strLine As String = m_VBE.ActiveCodePane.CodeModule.Lines(activeLine, 1)
+        Dim nbWhiteSpace As Integer = strLine.Length - strLine.Trim().Length
+
+        Dim strLineIndent As String = String.Join("", Enumerable.Repeat(" ", nbWhiteSpace))
+
+        If countToAdd > 0 Then
+            Return strLineIndent & String.Join("", Enumerable.Repeat(vbTab, countToAdd))
+        Else
+            Return strLineIndent
+        End If
 
     End Function
 

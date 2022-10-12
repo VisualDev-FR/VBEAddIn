@@ -24,3 +24,25 @@ ThreadingModel = Both
 
 HKEY_CURRENT_USER\Software\Classes\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\ProgId
 @= VBEAddIn.Connect
+
+
+
+HKEY_CURRENT_USER\Software\Classes\VBEAddIn.UserControlHost
+@= VBEAddIn.UserControlHost
+
+HKEY_CURRENT_USER\Software\Classes\VBEAddIn.UserControlHost\CLSID
+@= {0607197B-887A-4364-9386-ADAAE7227FD9}
+
+HKEY_CURRENT_USER\Software\Classes\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}
+@= VBEAddIn.UserControlHost
+
+HKEY_CURRENT_USER\Software\Classes\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}\InProcServer32
+@= mscoree.dll
+Assembly = VBEAddIn, Version=1.0.0.0, Culture=neutral, PublicKeyToken=869cad219d7a35e2
+Class = VBEAddIn.UserControlHost
+Codebase = file:///<path>/VBEAddIn.DLL
+RuntimeVersion = v2.0.50727
+ThreadingModel = Both
+
+HKEY_CURRENT_USER\Software\Classes\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}\ProgId
+@= VBEAddIn.UserControlHost

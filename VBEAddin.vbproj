@@ -116,10 +116,10 @@
     <Compile Include="UserControlHost.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlToolWindow1.Designer.vb">
-      <DependentUpon>UserControlToolWindow1.vb</DependentUpon>
+    <Compile Include="HistoChecker.Designer.vb">
+      <DependentUpon>HistoChecker.vb</DependentUpon>
     </Compile>
-    <Compile Include="UserControlToolWindow1.vb">
+    <Compile Include="HistoChecker.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
@@ -130,8 +130,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlToolWindow1.resx">
-      <DependentUpon>UserControlToolWindow1.vb</DependentUpon>
+    <EmbeddedResource Include="HistoChecker.resx">
+      <DependentUpon>HistoChecker.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

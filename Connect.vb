@@ -320,18 +320,18 @@ Public Class Connect
        ByRef CancelDefault As Boolean) Handles m_displayHistoChecker_Button.Click
 
         Dim userControlObject As Object = Nothing
-        Dim userControlToolWindow1 As UserControlToolWindow1
+        Dim myHistoChecker As HistoChecker
 
         Try
 
             If m_histoCheckerWindow Is Nothing Then
 
-                userControlToolWindow1 = New UserControlToolWindow1()
+                myHistoChecker = New HistoChecker()
 
                 ' TODO: Change the GUID
-                m_histoCheckerWindow = CreateToolWindow("Histo checker", "{312945A4-6B7D-4F69-82CC-ACD0879011DB}", userControlToolWindow1)
+                m_histoCheckerWindow = CreateToolWindow("Histo checker", "{312945A4-6B7D-4F69-82CC-ACD0879011DB}", myHistoChecker)
 
-                userControlToolWindow1.Initialize(_VBE)
+                myHistoChecker.Initialize(_VBE)
 
             Else
                 m_histoCheckerWindow.Visible = True

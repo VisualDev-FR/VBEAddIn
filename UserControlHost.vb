@@ -53,7 +53,6 @@ Public Class UserControlHost
     Friend Sub AddUserControl(ByVal control As UserControl)
 
         _parentHandle = GetParent(Me.Handle)
-
         _subClassingWindow = New SubClassingWindow(_parentHandle)
 
         control.Dock = DockStyle.Fill

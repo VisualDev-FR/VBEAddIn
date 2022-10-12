@@ -1,7 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports Extensibility
-Imports Microsoft.Vbe.Interop
-Imports Microsoft.Office.Core
+﻿Imports Microsoft.Vbe.Interop
 
 Public Class HistoAssistant
 
@@ -40,7 +37,7 @@ Public Class HistoAssistant
 
         Dim activeLine As Long = getCursorLine()
 
-        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, getCursorLineIndent(1) & "Call OOXOOXOOXOOXOOXOO(EXIT_HISTO)")
+        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, getCursorLineIndent(0) & "Call OOXOOXOOXOOXOOXOO(EXIT_HISTO)")
 
     End Sub
     Public Sub insert_ERROR()
@@ -49,7 +46,7 @@ Public Class HistoAssistant
 
         Dim activeLine As Long = getCursorLine()
 
-        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, getCursorLineIndent(1) & "Call OOXOOXOOXOOXOOXOO(ERROR_HISTO)")
+        Call m_VBE.ActiveCodePane.CodeModule.InsertLines(activeLine, getCursorLineIndent(0) & "Call OOXOOXOOXOOXOOXOO(ERROR_HISTO)")
 
     End Sub
 

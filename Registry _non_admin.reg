@@ -1,0 +1,26 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\VBA\VBE\6.0\Addins\VBEAddIn.Connect]
+"FriendlyName"="VBEAddIn"
+"Description"="Description for your new addin"
+"LoadBehavior"= 0
+
+HKEY_CURRENT_USER\Software\Classes\VBEAddIn.Connect
+@= VBEAddIn.Connect
+
+HKEY_CURRENT_USER\Software\Classes\VBEAddIn.Connect\CLSID
+@= {875B3991-9A51-48AC-A328-ABE02EB53279}
+
+HKEY_CURRENT_USER\Software\Classes\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}
+@= VBEAddIn.Connect
+
+HKEY_CURRENT_USER\Software\Classes\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\InProcServer32
+@= mscoree.dll
+Assembly = VBEAddIn, Version=1.0.0.0, Culture=neutral, PublicKeyToken=869cad219d7a35e2
+Class = VBEAddIn.Connect
+Codebase = file:///<path>/VBEAddIn.DLL
+RuntimeVersion = v2.0.50727
+ThreadingModel = Both
+
+HKEY_CURRENT_USER\Software\Classes\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\ProgId
+@= VBEAddIn.Connect

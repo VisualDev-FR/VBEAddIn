@@ -2,8 +2,11 @@
 Imports Extensibility
 Imports Microsoft.Vbe.Interop
 Imports Microsoft.Office.Core
+Imports System.Runtime.InteropServices
 
+<ComVisible(True), Guid("875B3991-9A51-48AC-A328-ABE02EB53279"), ProgId("VBEAddIn.Connect")>
 Public Class Connect
+
     Implements Extensibility.IDTExtensibility2
 
     Private _VBE As VBE

@@ -5,25 +5,27 @@
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ; Ensure that you use YOUR OWN APP_ID; DO NOT REUSE THIS ONE
-#define APP_ID "{{4EC56406-AD74-492e-8BB4-56E854BE1A1E}"
+#define APP_ID "{{ead31314-ea00-455a-8ff8-750ec04692e2}"
 
-#define APP_NAME "My VBA Add-in 1.0"
-#define DEST_SUB_DIR "MyVBAAddin"
-#define CONNECT_CLASS_FULL_NAME "MyVBAAddin.Connect"
-#define COMPANY_NAME "My Company"
+#define APP_NAME "VBEAddIn 1.0"
+#define DEST_SUB_DIR "VBEAddIn"
+#define CONNECT_CLASS_FULL_NAME "VBEAddIn.Connect"
+#define COMPANY_NAME "TMenanteau"
 #define RUNTIME_VERSION "v2.0.50727"
-#define COPYRIGHT_YEAR "2012"
+#define COPYRIGHT_YEAR "2022"
 
-#define INTEROP_OFFICE_FILE_NAME "MyCompany.Interop.Office12.dll"
-#define INTEROP_STDOLE_FILE_NAME "MyCompany.Interop.Stdole.dll"
-#define INTEROP_EXTENSIBILITY_FILE_NAME "MyCompany.Interop.Extensibility.dll"
-#define INTEROP_VBA_EXTENSIBILITY_FILE_NAME "MyCompany.Interop.VBAExtensibility.dll"
-#define DLL_FILE_NAME "MyVBAAddin.dll"
+#define INTEROP_OFFICE_FILE_NAME "VBEAddIn.Interop.Office11.dll"
+#define INTEROP_STDOLE_FILE_NAME "VBEAddIn.Interop.Stdole.dll"
+#define INTEROP_EXTENSIBILITY_FILE_NAME "VBEAddIn.Interop.Extensibility.dll"
+#define INTEROP_VBA_EXTENSIBILITY_FILE_NAME "VBEAddIn.Interop.VBAExtensibility.dll"
+#define DLL_FILE_NAME "VBEAddIn.dll"
 #define OUTPUT_FOLDER_NAME ".\Setup"
-#define SETUP_FILE_NAME "MyVBAAddinSetup"
+#define SETUP_FILE_NAME "VBEAddInSetup"
 #define VERSION "1.0.0.00"
-#define CONNECT_PROGID "MyVBAAddin.Connect"
-#define CONNECT_CLSID "{2CA1C920-2D5E-3E17-86D7-24DEB9303A3E}"
+#define CONNECT_PROGID "VBEAddIn.Connect"
+#define CONNECT_CLSID "{875B3991-9A51-48AC-A328-ABE02EB53279}"
+#define USERCONTROL_PROGID "VBEAddIn.UserControlHost"
+#define USERCONTROL_CLSID "{0607197B-887A-4364-9386-ADAAE7227FD9}"
 #define ASSEMBLY_FULL_NAME "MyVBAAddin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=869cad219d7a35e2"
 
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -40,7 +42,7 @@ VersionInfoVersion={#VERSION}
 OutputBaseFilename={#SETUP_FILE_NAME}
 OutputDir={#OUTPUT_FOLDER_NAME}
 PrivilegesRequired=lowest
-MinVersion=0,5.0.2195
+MinVersion=0,6.0
 AppName={#APP_NAME}
 AppVerName={#APP_NAME}
 DefaultGroupName={#APP_NAME}
@@ -53,7 +55,7 @@ ShowLanguageDialog=no
 UninstallLogMode=append
 DisableProgramGroupPage=true
 VersionInfoCompany={#COMPANY_NAME}
-AppCopyright=Copyright © {#COPYRIGHT_YEAR} {#COMPANY_NAME}
+AppCopyright=Copyright ï¿½ {#COPYRIGHT_YEAR} {#COMPANY_NAME}
 AlwaysUsePersonalGroup=true
 InternalCompressLevel=Ultra
 AllowNoIcons=true
@@ -80,7 +82,7 @@ Name: {app}; Type: filesandordirs
 
 [CustomMessages]
 English.NETFramework20NotInstalled=Microsoft .NET Framework 2.0 installation was not detected. 
-Spanish.NETFramework20NotInstalled=No se encontró la instalación de Microsoft .NET Framework 2.0. 
+Spanish.NETFramework20NotInstalled=No se encontro la instalacion de Microsoft .NET Framework 2.0. 
 
 [Run]
 
@@ -279,7 +281,7 @@ begin
 
    RegWriteStringValue(iRootKey, sAddinSubKey + '\' + sProgIDConnect, 'FriendlyName', '{#APP_NAME}');
    RegWriteStringValue(iRootKey, sAddinSubKey + '\' + sProgIDConnect, 'Description' , '{#APP_NAME}');
-   RegWriteDWordValue (iRootKey, sAddinSubKey + '\' + sProgIDConnect, 'LoadBehavior', 3);
+   RegWriteDWordValue (iRootKey, sAddinSubKey + '\' + sProgIDConnect, 'LoadBehavior', 0);
 
 end;
 

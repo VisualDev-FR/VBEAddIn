@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_CURRENT_USER\Software\Microsoft\VBA\VBE\6.0\Addins\VBEAddIn.Connect]
+
+[-HKEY_CURRENT_USER\Software\Classes\VBEAddIn.Connect]
+[-HKEY_CURRENT_USER\Software\Classes\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}]
+
+[-HKEY_CURRENT_USER\Software\Classes\VBEAddIn.UserControlHost]
+[-HKEY_CURRENT_USER\Software\Classes\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}]

@@ -1,0 +1,54 @@
+Windows Registry Editor Version 5.00
+
+;read all keys / values containing 'VBEAddIn' after visual studio build
+
+[HKEY_CURRENT_USER\Software\Microsoft\VBA\VBE\6.0\Addins\VBEAddIn.Connect]
+"CommandLineSafe"=dword:00000000
+"Description"="Description for your new addin"
+"LoadBehavior"=dword:00000000
+"FriendlyName"="VBEAddIn"
+
+;#######################################################################################
+[HKEY_CURRENT_USER\Software\Classes\VBEAddIn.Connect]
+@="VBEAddin.Connect"
+
+[HKEY_CURRENT_USER\Software\Classes\VBEAddIn.Connect\CLSID]
+@="{875B3991-9A51-48AC-A328-ABE02EB53279}"
+
+;#######################################################################################
+[HKEY_CURRENT_USER\Software\Classes\VBEAddIn.UserControlHost]
+@="VBEAddin.UserControlHost"
+
+[HKEY_CURRENT_USER\Software\Classes\VBEAddIn.UserControlHost\CLSID]
+@="{0607197B-887A-4364-9386-ADAAE7227FD9}"
+
+;#######################################################################################
+[HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}]
+@="VBEAddin.UserControlHost"
+
+[HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="VBEAddin.UserControlHost"
+"Assembly"="VBEAddin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///C:/Users/menan/Desktop/VBAddin/VBEAddin/bin/Debug/VBEAddin.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}\ProgId]
+@="VBEAddIn.UserControlHost"
+
+;#######################################################################################
+
+[HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}]
+@="VBEAddin.Connect"
+
+[HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="VBEAddin.Connect"
+"Assembly"="VBEAddin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///C:/Users/menan/Desktop/VBAddin/VBEAddin/bin/Debug/VBEAddin.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\ProgId]
+@="VBEAddIn.Connect"

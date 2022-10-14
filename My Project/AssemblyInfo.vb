@@ -13,11 +13,10 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyProduct("VBEAddin")>
 <Assembly: AssemblyCopyright("Copyright ©  2022")>
 <Assembly: AssemblyTrademark("")>
-
 <Assembly: ComVisible(True)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("ead31314-ea00-455a-8ff8-750ec04692e2")>
+<Assembly: Guid("E439B233-39E4-4B04-AA37-9DE306E42F80")>
 
 ' Version information for an assembly consists of the following four values:
 '

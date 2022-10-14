@@ -54,7 +54,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>TMenanteau.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="extensibility, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -98,8 +99,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HistoAssistant.vb" />
-    <Compile Include="Connect.vb" />
+    <Compile Include="src\HistoAssistant.vb" />
+    <Compile Include="src\Connect.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -116,16 +117,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="UserControlHost.Designer.vb">
+    <Compile Include="src\UserControlHost.Designer.vb">
       <DependentUpon>UserControlHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="UserControlHost.vb">
+    <Compile Include="src\UserControlHost.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HistoChecker.Designer.vb">
+    <Compile Include="src\HistoChecker.Designer.vb">
       <DependentUpon>HistoChecker.vb</DependentUpon>
     </Compile>
-    <Compile Include="HistoChecker.vb">
+    <Compile Include="src\HistoChecker.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
@@ -136,7 +137,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="HistoChecker.resx">
+    <EmbeddedResource Include="src\HistoChecker.resx">
       <DependentUpon>HistoChecker.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -150,7 +151,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="TMenanteau.snk" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Office1">

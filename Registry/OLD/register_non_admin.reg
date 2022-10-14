@@ -1,0 +1,49 @@
+Windows Registry Editor Version 5.00
+
+;VBE addin resigter
+[HKEY_CURRENT_USER\Software\Microsoft\VBA\VBE\6.0\Addins\VBEAddIn.Connect]
+"FriendlyName"="VBEAddIn"
+"Description"="my awesome VBA Addin"
+"LoadBehavior"= dword:00000000
+
+;Connect class keys
+[HKEY_CURRENT_USER\Software\Classes\VBEAddIn.Connect]
+@= "VBEAddIn.Connect"
+
+[HKEY_CURRENT_USER\Software\Classes\VBEAddIn.Connect\CLSID]
+@="{875B3991-9A51-48AC-A328-ABE02EB53279}"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}]
+@="VBEAddIn.Connect"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\InProcServer32]
+@= "mscoree.dll"
+"Assembly" = "VBEAddIn, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"Class" = "VBEAddIn.Connect"
+"Codebase" = "file:///C:\Users\menan\Desktop\VBAddin\VBEAddin\bin\Debug\VBEAddIn.dll"
+"RuntimeVersion" = "v4.0.30319"
+"ThreadingModel" = "Both"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\ProgId]
+@= "VBEAddIn.Connect"
+
+;userControlHost class keys
+[HKEY_CURRENT_USER\Software\Classes\VBEAddIn.UserControlHost]
+@= "VBEAddIn.UserControlHost"
+
+[HKEY_CURRENT_USER\Software\Classes\VBEAddIn.UserControlHost\CLSID]
+@= "{0607197B-887A-4364-9386-ADAAE7227FD9}"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}]
+@= "VBEAddIn.UserControlHost"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}\InProcServer32]
+@="mscoree.dll"
+"Assembly" = "VBEAddIn, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"Class" = "VBEAddIn.UserControlHost"
+"Codebase" = "file:///C:\Users\menan\Desktop\VBAddin\VBEAddin\bin\Debug\VBEAddIn.dll"
+"RuntimeVersion" = "v4.0.30319"
+"ThreadingModel" = "Both"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}\ProgId]
+@= "VBEAddIn.UserControlHost"

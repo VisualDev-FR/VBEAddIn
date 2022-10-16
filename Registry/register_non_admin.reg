@@ -32,7 +32,7 @@ Windows Registry Editor Version 5.00
 "Class"="VBEAddin.UserControlHost"
 "Assembly"="VBEAddin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
 "RuntimeVersion"="v4.0.30319"
-"CodeBase"="file:///C:/Users/menan/Desktop/VBAddin/VBEAddin/bin/Debug/VBEAddin.dll"
+"CodeBase"="file:///C:/Users/menan/Desktop/VBEAddin/bin/Debug/VBEAddin.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{0607197B-887A-4364-9386-ADAAE7227FD9}\ProgId]
 @="VBEAddIn.UserControlHost"
@@ -48,7 +48,7 @@ Windows Registry Editor Version 5.00
 "Class"="VBEAddin.Connect"
 "Assembly"="VBEAddin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
 "RuntimeVersion"="v4.0.30319"
-"CodeBase"="file:///C:/Users/menan/Desktop/VBAddin/VBEAddin/bin/Debug/VBEAddin.dll"
+"CodeBase"="file:///C:/Users/menan/Desktop/VBEAddin/bin/Debug/VBEAddin.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\WOW6432Node\CLSID\{875B3991-9A51-48AC-A328-ABE02EB53279}\ProgId]
 @="VBEAddIn.Connect"

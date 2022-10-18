@@ -27,6 +27,7 @@ Public Class Connect
 
     'ETITD mainMenu
     Private m_etid_mainmenu As CommandBarPopup
+    Private WithEvents m_test_Button As CommandBarButton
     Private WithEvents m_exportSourceCode_Button As CommandBarButton
     Private WithEvents m_importSourceCode_Button As CommandBarButton
     Private WithEvents m_displayHistoChecker_Button As CommandBarButton
@@ -49,6 +50,7 @@ Public Class Connect
 
     'Custom proc's
     Private m_Assistant As HistoAssistant
+    Private m_codeHandler As CodeHandler
 
     'm_etid_mainmenu
     'm_insert_histo_anchor_subMenu
@@ -143,6 +145,7 @@ Public Class Connect
     Private Sub InitializeAddIn()
 
         m_Assistant = New HistoAssistant(_VBE)
+        m_codeHandler = New CodeHandler(_VBE)
 
         ' Built-in commandbars of the VBA editor
         Dim standardCommandBar As CommandBar
@@ -204,6 +207,7 @@ Public Class Connect
             m_etid_mainmenu.Caption = ETITD_MENU_NAME
             m_etid_mainmenu.Visible = True
 
+            m_test_Button = AddCommandBarButton(m_etid_mainmenu.CommandBar, "TEST Button")
             m_exportSourceCode_Button = AddCommandBarButton(m_etid_mainmenu.CommandBar, "Export code")
             m_importSourceCode_Button = AddCommandBarButton(m_etid_mainmenu.CommandBar, "Import code")
             m_displayHistoChecker_Button = AddCommandBarButton(m_etid_mainmenu.CommandBar, "Histo checker")
@@ -234,8 +238,12 @@ Public Class Connect
 
     End Sub
 
+    Private Sub m_test_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_test_Button.Click
+        Call TEST_MAIN()
+    End Sub
+
     Private Sub m_exportSourceCode_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_exportSourceCode_Button.Click
-        MessageBox.Show("Clicked " & Ctrl.Caption)
+        m_codeHandler.exportSourceCode(_VBE.ActiveVBProject)
     End Sub
 
     Private Sub m_importSourceCode_Button_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_importSourceCode_Button.Click

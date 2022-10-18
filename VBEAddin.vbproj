@@ -105,6 +105,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\CodeHandler.vb" />
+    <Compile Include="src\FileHandler.vb" />
     <Compile Include="src\HistoAssistant.vb" />
     <Compile Include="src\Connect.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -123,6 +125,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="src\TEST.vb" />
     <Compile Include="src\UserControlHost.Designer.vb">
       <DependentUpon>UserControlHost.vb</DependentUpon>
     </Compile>

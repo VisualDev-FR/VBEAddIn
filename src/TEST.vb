@@ -4,9 +4,10 @@ Module TEST
 
     Sub TEST_MAIN()
 
-        Dim fileName As String = "C:\Users\menan\Desktop\src\03_modules\Benchmark.bas"
+        Dim fileName As String = "C:\Users\menan\Desktop\BenchMark LBC\src\03_modules\Benchmark.bas"
 
         Call convertFileToUnicode(fileName)
+
 
     End Sub
 

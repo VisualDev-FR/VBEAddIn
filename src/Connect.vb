@@ -244,10 +244,28 @@ Public Class Connect
 
     Private Sub m_exportSourceCode_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_exportSourceCode_Button.Click
         m_codeHandler.exportSourceCode(_VBE.ActiveVBProject)
+
+        ''TODO: Implémenter la gestion d'exception ici
+        'If Not isVbProjSaved(vbProj) Then
+        '    MessageBox.Show(
+        '        text:=vbProj.Name & " file not found",
+        '        caption:="VBEAddin.importSourceCode",
+        '        buttons:=MessageBoxButtons.OK,
+        '        icon:=MessageBoxIcon.Error)
+        '    Exit Sub
+        'ElseIf Not vbProjectSourceFolderExists(vbProj) Then
+        '    MessageBox.Show(
+        '        text:=vbProj.Name & " source folder not found",
+        '        caption:="VBEAddin.importSourceCode",
+        '        buttons:=MessageBoxButtons.OK,
+        '        icon:=MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
     End Sub
 
     Private Sub m_importSourceCode_Button_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_importSourceCode_Button.Click
-        MessageBox.Show("Clicked " & Ctrl.Caption)
+        m_codeHandler.importSourceCode(_VBE.ActiveVBProject)
+
     End Sub
 
     Private Sub m_begin_subMenuBtn_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_begin_subMenuBtn.Click

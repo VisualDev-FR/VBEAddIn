@@ -81,25 +81,12 @@ Public Class CodeHandler
 
     Public Sub exportSourceCode(vbProject As VBProject)
 
-        Dim sourceFolder As DirectoryInfo
-
-        'TODO: gérer le fileName inexistant (vbProject non sauvegardé)
         Dim vbProjFileInfo As New IO.FileInfo(vbProject.FileName)
-        Dim srcFolderInfo As DirectoryInfo = New DirectoryInfo(vbProjFileInfo.DirectoryName & "\src\")
+        Dim sourceFolder As DirectoryInfo = getVBProjectSourceFolder(vbProject, True)
 
-        If Not srcFolderInfo.Exists() Then
-            'Création du dossier 'src'
-            sourceFolder = IO.Directory.CreateDirectory(srcFolderInfo.FullName)
-        Else
-            'Archivage du depot actuel sur le disque utilisateur en cas de problème
-            sourceFolder = srcFolderInfo
-
-            'Suppression de tout les dossiers contenus dans 'src'
-            For Each subF As DirectoryInfo In sourceFolder.GetDirectories()
-                Directory.Delete(subF.FullName, True)
-            Next
-
-        End If
+        For Each subF As DirectoryInfo In sourceFolder.GetDirectories()
+            Directory.Delete(subF.FullName, True)
+        Next
 
         'Creation des sous-dossiers et export du code
         With sourceFolder
@@ -169,132 +156,132 @@ Public Class CodeHandler
 
     End Sub
 
-    'Public Sub importSourceCode(vbProj As VBProject)
-    '    ' ----------------------------------------------------------------
-    '    ' Purpose:  Import de tout les fichiers d'un repertoire santardisé, vers le vbProject d'un classeur /
-    '    '           suppression de tout les modules qui ne sont plus présents dans le dossier source
-    '    ' Parameter wbToImport (Workbook):  Classeur vers lequel on va faire l'import (utilisé pour determiner
-    '    '                                   l'emplacement des fichiers à  importer)
-    '    ' Author: a872364
-    '    ' Date: 03/10/2022
-    '    ' ----------------------------------------------------------------
+    Public Sub importSourceCode(vbProj As VBProject)
+        ' ----------------------------------------------------------------
+        ' Purpose:  Import de tout les fichiers d'un repertoire santardisé, vers le vbProject d'un classeur /
+        '           suppression de tout les modules qui ne sont plus présents dans le dossier source
+        ' Parameter wbToImport (Workbook):  Classeur vers lequel on va faire l'import (utilisé pour determiner
+        '                                   l'emplacement des fichiers à  importer)
+        ' Author: a872364
+        ' Date: 03/10/2022
+        ' ----------------------------------------------------------------
 
-    '    'Lecture de tout les composants VBA du projets dans lequel on fait l'import
-    '    Dim dicoVBComp As Dictionary
-    '    dicoVBComp = readVBComponents(wbToImport)
+        'Lecture de tout les composants VBA du projets dans lequel on fait l'import
+        Dim dicoVBComp As Dictionary(Of String, VBComponent) = readVBComponents(vbProj)
 
-    '    'Copie de tout les fichiers vers un dossier temporaire
-    '    Dim tempFolder As Folder, fso As New FileSystemObject
-    '    tempFolder = fso.CreateFolder(getVBAFolder().path & "\src_" & wbToImport.Name & Format(Now, "_yyyymmddhhmmss"))
+        'Copie de tout les fichiers vers un dossier temporaire
+        Dim tempFolder As DirectoryInfo = Directory.CreateDirectory(Path.Combine(getVBAFolder().FullName, "src_") & vbProj.Name & Format(Now, "_yyyymmddhhmmss"))
+        Dim sourceFolder As DirectoryInfo = getVBProjectSourceFolder(vbProj:=vbProj, create:=False)
 
-    '    Dim sourceFolder As Folder
-    '    sourceFolder = fso.GetFolder(wbToImport.path & "\src")
-    '    sourceFolder.Copy(tempFolder.path)
+        My.Computer.FileSystem.CopyDirectory(sourceFolder.FullName, tempFolder.FullName)
 
-    '    'Lecture de tout les fichiers temporaires
-    '    Dim dicoExpFiles As Dictionary
-    '    Set dicoExpFiles = readExportedFiles(tempFolder)
+        'Lecture de tout les fichiers temporaires
+        Dim dicoExpFiles As Dictionary(Of String, FileInfo) = getDicoFilesFromDirectory(tempFolder, False)
+        Dim errFiles As String = ""
 
-    '    Dim fileKey As Variant, errFiles As String
-    '    For Each fileKey In dicoExpFiles.Keys
+        For Each fileKey As String In dicoExpFiles.Keys
 
-    '        On Error GoTo nextFile
+            Dim mFile As FileInfo = dicoExpFiles.Item(fileKey)
 
-    '        Dim mFile As File
-    '    Set mFile = dicoExpFiles.Item(fileKey)
+            'Modification de l'encodage du fichier temporaire utf8->unicode
+            Call convertFileToUnicode(mFile)
 
-    '    If Not dicoVBComp.Exists(fileKey) Then
-    '            'Si le fichier n'existe pas dans le vbProject, on l'importe depuis le dossier source
-    '            Call wbToImport.VBProject.VBComponents.Import(mFile.path)
+            Try
 
-    '        Else
-    '            'Si le fichier existe dans le vbProject et dans le repertoire source, on supprime le vbComponent associé, puis on le ré-importe via le fichier source
-    '            Dim mVBComp As VBComponent
-    '        Set mVBComp = dicoVBComp.Item(fileKey)
+                If Not dicoVBComp.ContainsKey(fileKey) Then
+                    'Si le fichier n'existe pas dans le vbProject, on l'importe depuis le dossier source
+                    Call vbProj.VBComponents.Import(mFile.FullName)
 
-    '        'Modification de l'encodage du fichier utf8->unicode
-    '        Call convertFileToUnicode(mFile)
+                Else
 
-    '            'Si le composant est un excelObjet, on va se contenter de remplacer tout le code de son module
-    '            If mVBComp.Type = vbext_ct_Document Then
+                    'Si le fichier existe dans le vbProject et dans le repertoire source, on supprime le vbComponent associé, puis on le ré-importe via le fichier source
+                    Dim mVBComp As VBComponent = dicoVBComp.Item(fileKey)
 
-    '                'Suppression de toute les lignes du module
-    '                Call mVBComp.CodeModule.DeleteLines(1, mVBComp.CodeModule.CountOfLines)
+                    'Si le composant est un excelObjet, on va se contenter de remplacer tout le code de son module
+                    If mVBComp.Type = vbext_ComponentType.vbext_ct_Document Then
 
-    '                'Ré-écriture de toute les lignes du module à partir du fichier source
-    '                Call mVBComp.CodeModule.AddFromString(mFile.OpenAsTextStream.ReadAll)
+                        'Suppression de toute les lignes du module
+                        Call mVBComp.CodeModule.DeleteLines(1, mVBComp.CodeModule.CountOfLines)
 
-    '                'Suppression des lignes de déclaration présent dans les fichiers exportés par VBA
-    '                Call deleteDeclarationLines(mVBComp)
+                        'Ré-écriture de toute les lignes du module à partir du fichier source
+                        Using sr As New StreamReader(mFile.FullName)
+                            Call mVBComp.CodeModule.AddFromString(sr.ReadToEnd)
+                            sr.Close()
+                        End Using
 
-    '            Else
-    '                'Suppression du module
-    '                Call wbToImport.VBProject.VBComponents.Remove(mVBComp)
+                        'Suppression des lignes de déclaration présent dans les fichiers exportés par VBA
+                        Call deleteDeclarationLines(mVBComp)
 
-    '            'Ré-import du module + Modification de l'item du dictionnaire des vbCOmponents
-    '            Set dicoVBComp.Item(fileKey) = wbToImport.VBProject.VBComponents.Import(mFile.path)
+                    Else
+                        'Suppression du module
+                        vbProj.VBComponents.Remove(mVBComp)
 
-    '        End If
+                        'Ré-import du module + Modification de l'item du dictionnaire des vbCOmponents
+                        dicoVBComp.Item(fileKey) = vbProj.VBComponents.Import(mFile.FullName)
 
-    '        End If
+                    End If
 
+                End If
 
-    '        'Si une erreur est survenue dans l'import, on le notifie au développeur
-    '        If Err.Number <> 0 Then
-    '            errFiles = errFiles & mFile.Name & vbCrLf
-    '            Err.Clear()
-    '        End If
+            Catch ex As Exception
+                errFiles = errFiles & mFile.Name & vbCrLf
+            End Try
 
-    '    Next
+        Next
 
-    '    On Error GoTo 0
+        'Suppression du dossier temporaire contenant les fichiers encodés en unicode
+        tempFolder.Delete(recursive:=True)
 
-    '    'Suppression du dossier temporaire contenant les fichiers encodés en unicode
-    '    tempFolder.Delete
+        Dim sheetsToDelete As String = ""
 
-    '    Dim sheetsToDelete As String
+        'Une fois que tout a été importé, on vient supprimer tout les modules qui sont absents du dossier source
 
-    '    'Une fois que tout a été importé, on vient supprimer tout les modules qui sont absents du dossier source
+        For Each fileKey In dicoVBComp.Keys
 
-    '    For Each fileKey In dicoVBComp.Keys
+            Dim mVBComp As VBComponent = dicoVBComp.Item(fileKey)
 
-    '    Set mVBComp = dicoVBComp.Item(fileKey)
+            If Not dicoExpFiles.ContainsKey(fileKey) Then
 
-    '    If Not dicoExpFiles.Exists(fileKey) Then
+                If mVBComp.Type <> vbext_ComponentType.vbext_ct_Document Then
+                    'Si le composant n'est pas un excel object(feuille, classeur), on le supprime
+                    vbProj.VBComponents.Remove(mVBComp)
+                Else
+                    'Si le composant est un excel object, on ne peut pas le supprimer via VBE, on le notifiera au developpeur plus bas
+                    sheetsToDelete = sheetsToDelete & mVBComp.Name & vbCrLf
+                End If
 
-    '            If mVBComp.Type <> vbext_ct_Document Then
-    '                'Si le composant n'est pas un excel object(feuille, classeur), on le supprime
-    '                Call wbToImport.VBProject.VBComponents.Remove(mVBComp)
-    '            Else
-    '                'Si le composant est un excel object, on ne peut pas le supprimer via VBE, on le notifiera au developpeur plus bas
-    '                sheetsToDelete = sheetsToDelete & mVBComp.Name & vbCrLf
-    '            End If
+            ElseIf mVBComp.CodeModule.CountOfLines > 0 Then
 
-    '        ElseIf mVBComp.CodeModule.CountOfLines > 0 Then
+                'Suppression des lignes vides en début de module (pour éviter les detections de modif inutiles)
+                Call deleteStartBlankLines(mVBComp.CodeModule)
 
-    '            'Suppression des lignes vides en début de module (pour éviter les detections de modif inutiles)
-    '            Call deleteStartBlankLines(mVBComp.CodeModule)
+                'Suppression des lignes vides en fin de module (pour éviter les detections de modif inutiles)
+                Call deleteEndBlankLines(mVBComp.CodeModule)
 
-    '            'Suppression des lignes vides en fin de module (pour éviter les detections de modif inutiles)
-    '            Call deleteEndBlankLines(mVBComp.CodeModule)
+            End If
+        Next
 
-    '        End If
-    '    Next
+        If errFiles <> "" Then
+            'Si au moins un fichier a rencontré une erreur, on le notifie au développeur
+            MessageBox.Show(text:="Attention, les fichiers suivant ont rencontré un problème lors de l'import : " & vbCrLf & vbCrLf & errFiles,
+                            caption:="VBEAddin.importSourceCode",
+                            buttons:=MessageBoxButtons.OK,
+                            icon:=MessageBoxIcon.Error)
 
-    '    'Si au moins un fichier a rencontré une erreur, on le notifie au développeur
-    '    If errFiles <> "" Then _
-    '    MsgBox "Attention, les fichiers suivant ont rencontré un problème lors de l'import : " & vbCrLf & vbCrLf & sheetsToDelete,
-    '    vbOKOnly Or vbCritical, "OpenLibray.importSourceCode"
+        ElseIf sheetsToDelete <> "" Then
+            'Si un objet excel n'existe plus dans le dossier source, on le notifie au developpeur
+            MessageBox.Show(text:="Attention, les modules suivants n'existent plus et n'ont pas pu être supprimé : " & vbCrLf & vbCrLf & sheetsToDelete,
+                            caption:="VBEAddin.importSourceCode",
+                            buttons:=MessageBoxButtons.OK,
+                            icon:=MessageBoxIcon.Warning)
+        Else
+            MessageBox.Show(text:="Import succeded",
+                            caption:="VBEAddin.importSourceCode",
+                            buttons:=MessageBoxButtons.OK,
+                            icon:=MessageBoxIcon.Information)
+        End If
 
-    ''Si un objet excel n'existe plus dans le dossier source, on le notifie au developpeur
-    '    If sheetsToDelete <> "" Then
-    '        MsgBox "Attention, les modules suivants n'existent plus et n'ont pas pu être supprimé : " & vbCrLf & vbCrLf & sheetsToDelete,
-    '    vbOKOnly Or vbExclamation, "OpenLibray.importSourceCode"
-    'Else
-    '        MsgBox "Import successfull.", vbOKOnly Or vbInformation, "OpenLibray.importSourceCode"
-    'End If
-
-    'End Sub
+    End Sub
 
     Private Function readVBComponents(vbProj As VBProject) As Dictionary(Of String, VBComponent)
         ' ----------------------------------------------------------------
@@ -314,52 +301,6 @@ Public Class CodeHandler
         Return dicoVBComp
 
     End Function
-
-    '    Private Function readExportedFiles(sourceFolder As Folder) As Dictionary
-    '        ' ----------------------------------------------------------------
-    '        ' Purpose: Crée un dictionnaire contenant tout les fichiers d'un depot git standardisé pour VBA (clé = nom de fichier, item = objet File du fichier)
-    '        ' Parameter wb (Workbook): Classeur dont on souhaite lire les fichiers sources (sert de base pour trouver les emplacements de fichiers)
-    '        ' Return Type: Dictionary
-    '        ' Author: a872364
-    '        ' Date: 03/10/2022
-    '        ' ----------------------------------------------------------------
-    '        Dim fso As New FileSystemObject
-
-    '        Dim dicoExpFiles As Dictionary
-
-    '        Call addFilesIn(dico:=dicoExpFiles, from:=sourceFolder.SubFolders(EXCEL_OBJECTS_FOLDER_NAME))
-    '        Call addFilesIn(dico:=dicoExpFiles, from:=sourceFolder.SubFolders(MSFORMS_FOLDER_NAME))
-    '        Call addFilesIn(dico:=dicoExpFiles, from:=sourceFolder.SubFolders(STD_MODULES_FOLDER_NAME))
-    '        Call addFilesIn(dico:=dicoExpFiles, from:=sourceFolder.SubFolders(CLASS_MODULES_FOLDER_NAME))
-
-    '    Set readExportedFiles = dicoExpFiles
-
-    'End Function
-
-    'Private Sub addFilesIn(ByRef dico As Dictionary, ByVal from As Folder)
-    '    ' ----------------------------------------------------------------
-    '    ' Purpose: Remplir un dico d'objets 'File' si leur extension est .frm, .bas ou .cls
-    '    ' Parameter dicoFiles (Dictionary): dictionnaire passé par référence, que l'on va remplir successivement d'objets 'File'
-    '    ' Parameter mFolder (Folder): répertoire dans lequel on vient lire les fichiers à  ajouter au dictionnaire
-    '    ' Author: a872364
-    '    ' Date: 03/10/2022
-    '    ' ----------------------------------------------------------------
-    '    If dico Is Nothing Then Set dico = New Dictionary
-
-    'Dim mFile As Variant
-    '    For Each mFile In from.Files
-
-    '        Dim fileExtension As String, fileName As String
-    '        fileName = Split(mFile.Name, ".")(0)
-    '        fileExtension = Split(mFile.Name, ".")(1)
-
-    '        If fileExtension = "frm" Or fileExtension = "cls" Or fileExtension = "bas" Then
-    '            dico.Add Key:=fileName, Item:=mFile
-    '    End If
-
-    '    Next
-
-    'End Sub
 
     Private Sub deleteStartBlankLines(mModule As CodeModule)
         ' ----------------------------------------------------------------
@@ -421,6 +362,29 @@ Public Class CodeHandler
         If lastLine > 0 Then Call mModule.DeleteLines(1, lastLine)
 
     End Sub
+
+    Private Function getVBProjectSourceFolder(vbProj As VBProject, Optional create As Boolean = True) As DirectoryInfo
+
+        Dim vbProjFileName As String
+
+        Try
+            vbProjFileName = Path.Combine(New FileInfo(vbProj.FileName).Directory.FullName, "src")
+        Catch ex As Exception
+            Throw New VBProjectNotFoundException(vbProj)
+        End Try
+
+        If Directory.Exists(vbProjFileName) Then
+            Return New DirectoryInfo(vbProjFileName)
+
+        ElseIf create Then
+            Return Directory.CreateDirectory(vbProjFileName)
+
+        Else
+            Throw New SourceFolderNotExistsException(vbProj)
+
+        End If
+
+    End Function
 
 
 End Class

@@ -138,6 +138,7 @@
     <Compile Include="src\HistoChecker.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="src\VBEAddInExceptions.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

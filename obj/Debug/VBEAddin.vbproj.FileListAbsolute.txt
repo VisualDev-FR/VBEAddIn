@@ -50,3 +50,5 @@ C:\Users\menan\Desktop\VBEAddin\bin\Debug\LibGit2Sharp.pdb
 C:\Users\menan\Desktop\VBEAddin\bin\Debug\LibGit2Sharp.xml
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.vbproj.CopyComplete
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.HistoChecker_ToolWindow.resources
+C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.CustomImportExport_Window.resources
+C:\Users\menan\Desktop\VBEAddin\obj\Debug\Interop.Shell32.dll

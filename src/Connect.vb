@@ -19,13 +19,12 @@ Public Class Connect
     Private Const CODE_WINDOW_COMMANDBAR_NAME As String = "Code Window"
 
     ' Constants for names of commandbars created by the add-in
-    Const ETITD_MENU_NAME As String = "ETITD"
+    Const ETITD_MENU_NAME As String = "HCDC"
     Const HISTO_CHECKER_NAME As String = "Check Histo"
 
     'Tool window
     Private m_histoCheckerWindow As VBE_ToolWindow
     Private m_etid_mainmenu As ETITD_MenuBar
-    Private m_insert_histo_anchor_subMenu As HistoAssistant_Submenu
     Private m_histo_checker_toolbar As HistoAssistant_Toolbar
 
     Private Sub OnConnection(Application As Object, ConnectMode As Extensibility.ext_ConnectMode,
@@ -101,27 +100,13 @@ Public Class Connect
 
     Private Sub InitializeAddIn()
 
-        ' Built-in commandbars of the VBA editor
-        Dim standardCommandBar As CommandBar
-        Dim menuCommandBar As CommandBar
-        Dim toolsCommandBar As CommandBar
-        Dim codeCommandBar As CommandBar
-
-        ' Other variables
-        Dim toolsCommandBarControl As CommandBarControl
-        Dim position As Integer
-
         Try
 
-            'Retrieve some built-in commandbars
-            standardCommandBar = _VBE.CommandBars.Item(STANDARD_COMMANDBAR_NAME)
-            menuCommandBar = _VBE.CommandBars.Item(MENUBAR_COMMANDBAR_NAME)
-            toolsCommandBar = _VBE.CommandBars.Item(TOOLS_COMMANDBAR_NAME)
-            codeCommandBar = _VBE.CommandBars.Item(CODE_WINDOW_COMMANDBAR_NAME)
+            Dim menuCommandBar As CommandBar = _VBE.CommandBars.Item(MENUBAR_COMMANDBAR_NAME)
 
             m_histo_checker_toolbar = New HistoAssistant_Toolbar(_VBE, HISTO_CHECKER_NAME, MsoBarPosition.msoBarTop)
-            m_etid_mainmenu = New ETITD_MenuBar(_VBE, _AddIn, menuCommandBar, 11, ETITD_MENU_NAME)
-            m_insert_histo_anchor_subMenu = New HistoAssistant_Submenu(_VBE, m_etid_mainmenu.commandBar, m_etid_mainmenu.commandBar.Controls.Count + 1, "Histo Assistant")
+            m_etid_mainmenu = New ETITD_MenuBar(_VBE, _AddIn, menuCommandBar, ETITD_MENU_NAME)
+
 
         Catch e As System.Exception
             System.Windows.Forms.MessageBox.Show(e.ToString)

@@ -10,14 +10,16 @@ Public MustInherit Class VBE_MenuBar
     Protected m_AddIn As AddIn
     Protected m_CommandBarPopup As CommandBarPopup
 
-    Public Sub New(VBE_ As VBE, parentCommandBar As CommandBar, position As Integer, name As String)
+    Public Sub New(VBE_ As VBE, parentCommandBar As CommandBar, name As String, Optional position As Integer = -1)
+
+        Dim mPosition As Integer = IIf(position > -1, position, parentCommandBar.Controls.Count + 1)
 
         m_CommandBarPopup = DirectCast(
             parentCommandBar.Controls.Add(
                 MsoControlType.msoControlPopup,
                 System.Type.Missing,
                 System.Type.Missing,
-                position,
+                mPosition,
                 True),
             CommandBarPopup)
 

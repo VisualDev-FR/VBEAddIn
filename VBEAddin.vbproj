@@ -107,7 +107,9 @@
   <ItemGroup>
     <Compile Include="src\CodeHandler.vb" />
     <Compile Include="src\MenuBar\ETITD_MenuBar.vb" />
-    <Compile Include="src\MenuBar\HistoAssistant_Submenu.vb" />
+    <Compile Include="src\MenuBar\SubMenus\Export_Submenu.vb" />
+    <Compile Include="src\MenuBar\SubMenus\HistoAssistant_Submenu.vb" />
+    <Compile Include="src\MenuBar\SubMenus\Import_Submenu.vb" />
     <Compile Include="src\ToolBars\HistoAssistant_Toolbar.vb" />
     <Compile Include="src\VBEControls\VBE_MenuBar.vb" />
     <Compile Include="src\FileHandler.vb" />
@@ -145,6 +147,12 @@
     <Compile Include="src\VBEAddInExceptions.vb" />
     <Compile Include="src\VBEControls\VBE_ToolBar.vb" />
     <Compile Include="src\VBEControls\VBE_ToolWindow.vb" />
+    <Compile Include="src\Windows\CustomImportExport_Window.Designer.vb">
+      <DependentUpon>CustomImportExport_Window.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\Windows\CustomImportExport_Window.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -155,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\ToolWindows\HistoChecker_ToolWindow.resx">
       <DependentUpon>HistoChecker_ToolWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Windows\CustomImportExport_Window.resx">
+      <DependentUpon>CustomImportExport_Window.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +185,15 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>

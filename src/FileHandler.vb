@@ -4,8 +4,34 @@ Imports Microsoft.Vbe.Interop
 Imports Microsoft.Office.Core
 Imports System.IO
 Imports System.Text
+Imports System.Text.RegularExpressions
 
 Module FileHandler
+
+    Public Function getFileVersion(fileInfo As FileInfo) As String
+
+        Dim myShell As Shell32.Shell = New Shell32.Shell
+        Dim myFolder As Shell32.Folder = myShell.NameSpace(fileInfo.Directory.FullName)
+        Dim myFile As Shell32.FolderItem = myFolder.Items.Item(fileInfo.Name)
+
+        Dim pattern As String = "[v|V]\d+[.\d+]+", details As String = ""
+        For i As Integer = 0 To 500
+
+            Dim fileDetail As String = myFolder.GetDetailsOf(myFile, i)
+
+            If Regex.IsMatch(fileDetail, pattern) Then
+                Return fileDetail
+            End If
+
+        Next
+
+    End Function
+
+    Public Function getFileVersion(filePath As String) As String
+
+        Return FileVersionInfo.GetVersionInfo(filePath).FileVersion
+
+    End Function
 
     Public Sub convertFileToUtf(fileName As String)
 
@@ -57,6 +83,44 @@ Module FileHandler
             Return Directory.CreateDirectory(vbaPath)
         Else
             Throw New VBAFolderNotFoundException()
+        End If
+
+    End Function
+
+    Public Function getVBProjectSourceFolder(vbProj As VBProject, Optional create As Boolean = True) As DirectoryInfo
+
+        Dim vbProjFileName As String
+
+        Try
+            vbProjFileName = Path.Combine(New FileInfo(vbProj.FileName).Directory.FullName, "src")
+        Catch ex As Exception
+            Throw New VBProjectNotFoundException(vbProj)
+        End Try
+
+        If Directory.Exists(vbProjFileName) Then
+            Return New DirectoryInfo(vbProjFileName)
+
+        ElseIf create Then
+            Return Directory.CreateDirectory(vbProjFileName)
+
+        Else
+            Throw New SourceFolderNotExistsException(vbProj)
+
+        End If
+
+    End Function
+
+    <DebuggerHidden>
+    Public Function getRequirementTextFile(vbProj As VBProject, Optional create As Boolean = True) As StreamWriter
+
+        Dim requirementPath As String = Path.Combine(New FileInfo(vbProj.FileName).Directory.FullName, "requirement.txt")
+
+        If File.Exists(requirementPath) Then
+            Return New StreamWriter(requirementPath)
+        ElseIf create Then
+            Return File.CreateText(requirementPath)
+        Else
+            Throw New RequirementNotFoundException(vbProj)
         End If
 
     End Function

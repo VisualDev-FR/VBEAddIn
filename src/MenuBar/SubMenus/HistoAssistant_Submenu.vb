@@ -12,12 +12,11 @@ Public Class HistoAssistant_Submenu : Inherits VBE_MenuBar
     Private WithEvents m_error_button As CommandBarButton
     Private WithEvents m_fatalButton As CommandBarButton
 
-    Private m_VBE As VBE
     Private m_assistant As HistoAssistant
 
-    Public Sub New(VBE_ As VBE, parentCommandBar As CommandBar, position As Integer, name As String)
+    Public Sub New(VBE_ As VBE, parentCommandBar As CommandBar, name As String)
 
-        MyBase.New(VBE_, parentCommandBar, position, name)
+        MyBase.New(VBE_, parentCommandBar, name)
 
         m_VBE = VBE_
         m_assistant = New HistoAssistant(VBE_)

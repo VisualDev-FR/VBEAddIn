@@ -31,3 +31,10 @@ Public Class VBAFolderNotFoundException : Inherits ApplicationException
     End Sub
     Public Overrides ReadOnly Property message As String
 End Class
+
+Public Class RequirementNotFoundException : Inherits ApplicationException
+    Sub New(vbProj As VBProject)
+        message = "Requirement file not found for " & vbProj.Name
+    End Sub
+    Public Overrides ReadOnly Property message As String
+End Class

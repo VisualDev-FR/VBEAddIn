@@ -30,8 +30,7 @@ Public Class CodeHandler
         ' ----------------------------------------------------------------
 
         'On récupère le fichier 'requirement.txt' situé à  l'emplacement du workbook à traiter / on le créer s'il n'existe pas
-        'Dim fso As New FileSystemObject, oStream As TextStream
-        'oStream = fso.OpenTextFile(wb.path & "\" & "requirement.txt", ForWriting, True)
+        Dim sWriter As StreamWriter = getRequirementTextFile(vbProj, True)
 
         'On vient lire toute ses références, s'il y en a une qui pointe vers un fichier excel, on enregistre son nom, son full path et sa version
         Dim ref As Reference, brokenRef As String = ""
@@ -51,9 +50,9 @@ Public Class CodeHandler
 
                 If InStr(1, ref.FullPath, ".xl") Then
 
-                    'xlVersion = getFileDetail(ref.FullPath, versionIndex)
-                    'refAttr(3) = Replace(Split(xlVersion, ".")(0), "v", "", 1, 1, vbTextCompare)
-                    'refAttr(4) = Split(xlVersion, ".")(1)
+                    Dim xlVersion As String = getFileVersion(New FileInfo(vbProj.FileName))
+                    refAttr(3) = Replace(Split(xlVersion, ".")(0), "v", "", 1, 1, vbTextCompare)
+                    refAttr(4) = Split(xlVersion, ".")(1)
                 Else
                     'sinon on prend les attributs du vbComponent
                     refAttr(3) = ref.Major
@@ -61,11 +60,13 @@ Public Class CodeHandler
 
                 End If
 
-                'oStream.WriteLine Join(refAttr, "|")
+                sWriter.WriteLine(Strings.Join(refAttr, "|"))
 
             End If
 
         Next
+
+        sWriter.Close()
 
         'On retourne true si toute les références ont été trouvés / false si au moins une référence est manquante
         If brokenRef <> "" Then
@@ -362,29 +363,5 @@ Public Class CodeHandler
         If lastLine > 0 Then Call mModule.DeleteLines(1, lastLine)
 
     End Sub
-
-    Private Function getVBProjectSourceFolder(vbProj As VBProject, Optional create As Boolean = True) As DirectoryInfo
-
-        Dim vbProjFileName As String
-
-        Try
-            vbProjFileName = Path.Combine(New FileInfo(vbProj.FileName).Directory.FullName, "src")
-        Catch ex As Exception
-            Throw New VBProjectNotFoundException(vbProj)
-        End Try
-
-        If Directory.Exists(vbProjFileName) Then
-            Return New DirectoryInfo(vbProjFileName)
-
-        ElseIf create Then
-            Return Directory.CreateDirectory(vbProjFileName)
-
-        Else
-            Throw New SourceFolderNotExistsException(vbProj)
-
-        End If
-
-    End Function
-
 
 End Class

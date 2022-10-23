@@ -41,7 +41,7 @@ Partial Class HistoChecker_ToolWindow
         Me.view.FormattingEnabled = True
         Me.view.Location = New System.Drawing.Point(0, 39)
         Me.view.Name = "view"
-        Me.view.Size = New System.Drawing.Size(406, 381)
+        Me.view.Size = New System.Drawing.Size(347, 368)
         Me.view.TabIndex = 0
         '
         'vbProjList
@@ -51,7 +51,7 @@ Partial Class HistoChecker_ToolWindow
         Me.vbProjList.FormattingEnabled = True
         Me.vbProjList.Location = New System.Drawing.Point(3, 3)
         Me.vbProjList.Name = "vbProjList"
-        Me.vbProjList.Size = New System.Drawing.Size(143, 21)
+        Me.vbProjList.Size = New System.Drawing.Size(115, 21)
         Me.vbProjList.TabIndex = 1
         '
         'vbCompList
@@ -61,7 +61,7 @@ Partial Class HistoChecker_ToolWindow
         Me.vbCompList.FormattingEnabled = True
         Me.vbCompList.Location = New System.Drawing.Point(3, 3)
         Me.vbCompList.Name = "vbCompList"
-        Me.vbCompList.Size = New System.Drawing.Size(158, 21)
+        Me.vbCompList.Size = New System.Drawing.Size(127, 21)
         Me.vbCompList.TabIndex = 2
         '
         'SplitContainer1
@@ -78,8 +78,8 @@ Partial Class HistoChecker_ToolWindow
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.vbCompList)
-        Me.SplitContainer1.Size = New System.Drawing.Size(317, 31)
-        Me.SplitContainer1.SplitterDistance = 149
+        Me.SplitContainer1.Size = New System.Drawing.Size(258, 31)
+        Me.SplitContainer1.SplitterDistance = 121
         Me.SplitContainer1.TabIndex = 3
         '
         'btn_refresh
@@ -91,15 +91,15 @@ Partial Class HistoChecker_ToolWindow
         Me.btn_refresh.Text = "Refresh"
         Me.btn_refresh.UseVisualStyleBackColor = True
         '
-        'HistoChecker
+        'HistoChecker_ToolWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.btn_refresh)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.view)
-        Me.Name = "HistoChecker"
-        Me.Size = New System.Drawing.Size(406, 431)
+        Me.Name = "HistoChecker_ToolWindow"
+        Me.Size = New System.Drawing.Size(347, 426)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()

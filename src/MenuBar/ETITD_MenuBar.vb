@@ -26,8 +26,8 @@ Public Class ETITD_MenuBar : Inherits VBE_MenuBar
         m_codeHandler = New CodeHandler(VBE_)
 
         m_test_Button = addButton("TEST Button")
-        m_exportSourceCode_Button = addButton("Export code")
-        m_importSourceCode_Button = addButton("Import code")
+        m_exportSourceCode_Button = addButton("Export All...")
+        m_importSourceCode_Button = addButton("Import All...")
         m_displayHistoChecker_Button = addButton("Histo checker")
 
     End Sub

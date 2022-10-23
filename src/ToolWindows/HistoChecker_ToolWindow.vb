@@ -248,11 +248,11 @@ Friend Class HistoChecker_ToolWindow
         Dim activeVbComp As VBComponent = getSelectedVBComp()
         Dim activeLine As Long = Val(strLine)
 
+        activeVbComp.CodeModule.CodePane.Window.Close()
         activeVbComp.CodeModule.CodePane.Show()
         activeVbComp.CodeModule.CodePane.TopLine = Math.Max(activeLine - activeVbComp.CodeModule.CodePane.CountOfVisibleLines + 10, 1)
         activeVbComp.CodeModule.CodePane.SetSelection(activeLine, 1, activeLine + 1, 1)
 
-        m_VBE.ActiveCodePane.Window.SetFocus()
 
     End Sub
 End Class

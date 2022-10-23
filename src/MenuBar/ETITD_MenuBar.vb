@@ -63,11 +63,12 @@ Public Class ETITD_MenuBar : Inherits VBE_MenuBar
 
     Private Sub m_displayHistoChecker_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_displayHistoChecker_Button.Click
 
-        Dim myHistoChecker As New HistoChecker_ToolWindow
+        Dim myHistoChecker As HistoChecker_ToolWindow
 
         Try
             If m_histoCheckerWindow Is Nothing Then
 
+                myHistoChecker = New HistoChecker_ToolWindow()
                 m_histoCheckerWindow = New VBE_ToolWindow(m_VBE, m_AddIn, "Histo checker", "{312945A4-6B7D-4F69-82CC-ACD0879011DB}", myHistoChecker)
                 myHistoChecker.Initialize(m_VBE)
             Else

@@ -22,8 +22,15 @@ Public MustInherit Class VBE_MenuBar
             CommandBarPopup)
 
         m_CommandBarPopup.Visible = True
+        m_CommandBarPopup.Caption = name
 
     End Sub
+
+    Public ReadOnly Property commandBar() As CommandBar
+        Get
+            Return m_CommandBarPopup.CommandBar
+        End Get
+    End Property
 
     Public Sub Hide()
         m_CommandBarPopup.Visible = False
@@ -31,10 +38,6 @@ Public MustInherit Class VBE_MenuBar
 
     Public Sub Show()
         m_CommandBarPopup.Visible = True
-    End Sub
-
-    Protected Sub setMyName(myName As String)
-        m_CommandBarPopup.Caption = myName
     End Sub
 
     Protected Function addButton(ByRef buttonName As String) As CommandBarButton

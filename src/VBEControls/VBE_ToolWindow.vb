@@ -14,6 +14,9 @@ Public Class VBE_ToolWindow
 
     Public Sub New(VBE_ As VBE, AddIn_ As AddIn, caption As String, windowGuid As String, ByVal toolWindowUserControl As UserControl)
 
+        m_VBE = VBE_
+        m_AddIn = AddIn_
+
         Dim userControlObject As Object = Nothing
         Dim userControlHost As UserControlHost
 

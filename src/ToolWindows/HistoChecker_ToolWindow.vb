@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.Vbe.Interop
 Imports System.Windows.Forms
 
-Friend Class HistoChecker
+Friend Class HistoChecker_ToolWindow
 
     'MEMBERS
     Private m_AnchorsDico As Dictionary(Of String, Object)

@@ -26,7 +26,6 @@ C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.vbproj.AssemblyReference.cach
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\Interop.Office.dll
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.vbproj.ResolveComReference.cache
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.Resources.resources
-C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.HistoChecker.resources
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.vbproj.GenerateResource.cache
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.vbproj.CoreCompileInputs.cache
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.dll
@@ -50,3 +49,4 @@ C:\Users\menan\Desktop\VBEAddin\bin\Debug\LibGit2Sharp.dll
 C:\Users\menan\Desktop\VBEAddin\bin\Debug\LibGit2Sharp.pdb
 C:\Users\menan\Desktop\VBEAddin\bin\Debug\LibGit2Sharp.xml
 C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.vbproj.CopyComplete
+C:\Users\menan\Desktop\VBEAddin\obj\Debug\VBEAddin.HistoChecker_ToolWindow.resources

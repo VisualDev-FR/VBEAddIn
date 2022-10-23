@@ -188,7 +188,7 @@ Public Class Connect
             m_error_toolbarBtn.Caption = "ERROR"
             m_error_toolbarBtn.Style = MsoButtonStyle.msoButtonCaption
 
-            m_fatal_toolbarBtn = AddCommandBarButton(m_histo_checker_toolbar, "FATAl")
+            m_fatal_toolbarBtn = AddCommandBarButton(m_histo_checker_toolbar, "FATAL")
             m_fatal_toolbarBtn.Caption = "FATAL"
             m_fatal_toolbarBtn.Style = MsoButtonStyle.msoButtonCaption
 
@@ -345,23 +345,17 @@ Public Class Connect
 
     End Function
 
-    Private Sub m_displayHistoChecker_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton,
-       ByRef CancelDefault As Boolean) Handles m_displayHistoChecker_Button.Click
+    Private Sub m_displayHistoChecker_Button_Click(Ctrl As Microsoft.Office.Core.CommandBarButton, ByRef CancelDefault As Boolean) Handles m_displayHistoChecker_Button.Click
 
         Dim userControlObject As Object = Nothing
-        Dim myHistoChecker As HistoChecker
+        Dim myHistoChecker As HistoChecker_ToolWindow
 
         Try
-
             If m_histoCheckerWindow Is Nothing Then
 
-                myHistoChecker = New HistoChecker()
-
-                ' TODO: Change the GUID
+                myHistoChecker = New HistoChecker_ToolWindow()
                 m_histoCheckerWindow = CreateToolWindow("Histo checker", "{312945A4-6B7D-4F69-82CC-ACD0879011DB}", myHistoChecker)
-
                 myHistoChecker.Initialize(_VBE)
-
             Else
                 m_histoCheckerWindow.Visible = True
             End If
@@ -371,5 +365,7 @@ Public Class Connect
         End Try
 
     End Sub
+
+
 
 End Class

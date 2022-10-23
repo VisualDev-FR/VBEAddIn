@@ -106,6 +106,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\CodeHandler.vb" />
+    <Compile Include="src\MenuBar\ETITD_MenuBar.vb" />
+    <Compile Include="src\MenuBar\HistoAssistant_Submenu.vb" />
+    <Compile Include="src\ToolBars\HistoAssistant_Toolbar.vb" />
+    <Compile Include="src\VBEControls\VBE_MenuBar.vb" />
     <Compile Include="src\FileHandler.vb" />
     <Compile Include="src\HistoAssistant.vb" />
     <Compile Include="src\Connect.vb" />
@@ -126,19 +130,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="src\TEST.vb" />
-    <Compile Include="src\UserControlHost.Designer.vb">
+    <Compile Include="src\ToolWindows\UserControlHost.Designer.vb">
       <DependentUpon>UserControlHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\UserControlHost.vb">
+    <Compile Include="src\ToolWindows\UserControlHost.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="src\HistoChecker.Designer.vb">
-      <DependentUpon>HistoChecker.vb</DependentUpon>
+    <Compile Include="src\ToolWindows\HistoChecker_ToolWindow.Designer.vb">
+      <DependentUpon>HistoChecker_ToolWindow.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\HistoChecker.vb">
+    <Compile Include="src\ToolWindows\HistoChecker_ToolWindow.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\VBEAddInExceptions.vb" />
+    <Compile Include="src\VBEControls\VBE_ToolBar.vb" />
+    <Compile Include="src\VBEControls\VBE_ToolWindow.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -147,8 +153,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\HistoChecker.resx">
-      <DependentUpon>HistoChecker.vb</DependentUpon>
+    <EmbeddedResource Include="src\ToolWindows\HistoChecker_ToolWindow.resx">
+      <DependentUpon>HistoChecker_ToolWindow.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +192,7 @@
   <ItemGroup>
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
